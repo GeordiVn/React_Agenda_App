@@ -13,7 +13,6 @@ const [layout,setLayout] = useState(<OptionBar/>);
             <OptionButton onLayoutChanged={setLayout} layout={<CalendarWeek/>} title={'Week'}/>
             <OptionButton onLayoutChanged={setLayout} layour={<CalendarMaand/>} title={'Maand'}/>
             <OptionButton onLayoutChanged={setLayout} layout={<CalenderJaar/>} title={'Jaar'}/>
-
         </OptionBar>
         {layout}
     </Container>
