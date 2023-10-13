@@ -6,6 +6,7 @@ import {endOfWeek, startOfWeek} from "date-fns";
 import {useState} from "react";
 
 
+
 const taskConverter =
     {
         toFirestore: undefined,
@@ -30,6 +31,8 @@ export function CalendarWeek() {
             .map((task) => <TaskElementWeek key={task.id} task={task}/>)}
     </div>
 }
+
+
 
 
 function WeekSelector(props) {
