@@ -2,6 +2,7 @@ import {firestoreDB} from "../services/firebase";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {collection} from 'firebase/firestore';
 import {TaskElementWeek} from "./TaskElementWeek";
+import {Row} from "react-bootstrap";
 
 const taskConverter =
     {
@@ -15,8 +16,16 @@ const taskConverter =
 export function CalendarWeek() {
     const query = collection(firestoreDB, 'Task').withConverter(taskConverter);
     const [values, loading, error] = useCollectionData(query);
-    if (loading) return<></>;
+    if (loading) return <></>;
     return <div>
-        {values.sort((p1,p2)=> p1.date.seconds-p2.date.seconds).map((task)=> <TaskElementWeek key={task.id} task={task}/>)}
+        {[...values].sort((p1, p2) => p1.date.seconds - p2.date.seconds)
+            .map((task) => <TaskElementWeek key={task.id} task={task}/>)}
     </div>
+}
+
+function WeekSelection(props)
+{
+    return <Row className={'g-0'}>
+        
+    </Row>
 }
