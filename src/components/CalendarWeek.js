@@ -17,6 +17,6 @@ export function CalendarWeek() {
     const [values, loading, error] = useCollectionData(query);
     if (loading) return<></>;
     return <div>
-        {values.map((task)=> <TaskElementWeek key={task.id} task={task}/>)}
+        {values.sort((p1,p2)=> p1.date.seconds-p2.date.seconds).map((task)=> <TaskElementWeek key={task.id} task={task}/>)}
     </div>
 }
