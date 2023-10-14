@@ -4,14 +4,13 @@ import {
 } from "../utilities/dbTimeStampConverter";
 import {DeleteButton} from "./DeleteButton";
 import PropTypes from "prop-types";
+import {Section} from "./Section";
 
 export function TaskElementWeek(props) {
     const {task} = props
 
-    return <Row className={'g-0'} style={{
-        backgroundColor: '#512bd4', borderRadius: '10px', color: 'white', padding: '1.5rem', marginTop: '1.5rem'
-    }}>
-        <Row className={'g-0'}>
+    return <Section>
+        <Row className={'g-0 '}>
             <Col xs={"10"}>
                 <TaskData title={'Task'} textColor={priorityColor[task.priority]} data={task.title}/>
             </Col>
@@ -19,11 +18,10 @@ export function TaskElementWeek(props) {
                 <DeleteButton/>
             </Col>
         </Row>
-        {console.log(task)}
         <TaskData title={'Datum'} data={dbTimeStampConverterToDate(task.date)}/>
         <TaskData title={'Om'} data={dbTimeStampConverterToTime(task.date)}/>
         <TaskData title={'Omschrijving'} data={task.description}/>
-    </Row>
+    </Section>
 }
 
 function TaskData(props) {

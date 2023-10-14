@@ -1,18 +1,45 @@
-import {Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {OptionBar} from "../components/OptionBar";
-import {OptionButton} from "../components/OptionButton";
+import {ButtonCustom} from "../components/ButtonCustom.js";
 import {useState} from "react";
 import {CalendarWeek} from "../components/CalendarWeek";
 import {CalendarMaand} from "../components/CalendarMaand";
 import {CalenderJaar} from "../components/CalenderJaar";
+import {collection} from "firebase/firestore";
+import {firestoreDB} from "../services/firebase";
+import {useCollectionData} from "react-firebase-hooks/firestore";
 
-export function CalendarPage(props) {
-const [layout,setLayout] = useState(<OptionBar/>);
+
+const taskConverter = {
+    toFirestore: undefined, fromFirestore: function (snapshot, options) {
+        const data = snapshot.data(options);
+        return {...data, id: snapshot.id}
+    }
+}
+
+
+export function CalendarPage() {
+    const [layout, setLayout] = useState(<OptionBar/>);
+    const query = collection(firestoreDB, 'Task').withConverter(taskConverter);
+    const [values, loading, error] = useCollectionData(query);
+    if (loading) return <></>;
     return <Container>
         <OptionBar>
-            <OptionButton onLayoutChanged={setLayout} layout={<CalendarWeek/>} title={'Week'}/>
-            <OptionButton onLayoutChanged={setLayout} layour={<CalendarMaand/>} title={'Maand'}/>
-            <OptionButton onLayoutChanged={setLayout} layout={<CalenderJaar/>} title={'Jaar'}/>
+            <Row className={'g-0'}>
+                <Col xs={"auto"}>
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarWeek tasks={values}/>)}
+                                  title={'Week'}/>
+                </Col>
+                <Col xs={"auto"}>
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarMaand tasks={values}/>)}
+                                  title={'Maand'}/>
+
+                </Col>
+                <Col xs={"auto"}>
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalenderJaar/>)}
+                                  title={'Jaar'}/>
+                </Col>
+            </Row>
         </OptionBar>
         {layout}
     </Container>
