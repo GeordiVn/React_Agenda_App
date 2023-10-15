@@ -1,4 +1,4 @@
-import {Col} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 export function DayElement(props) {
     const {title, children, style} = props;
@@ -9,11 +9,14 @@ export function DayElement(props) {
         borderRadius: '10px',
         marginBottom: '5px',
         marginRight: '5px',
-        height: '100px'
+        height: '100px',
+        overflowY:'scroll'
     }}>
         <div className={'text-center'}>
             <p>{title}</p>
-            {children}
+            <div className={'g-0'}>
+                {children}
+            </div>
         </div>
     </Col>
 }

@@ -6,6 +6,8 @@ import {Col, Row} from "react-bootstrap";
 import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
 import {forEach, map} from "react-bootstrap/ElementChildren";
 import {ButtonCustom} from "./ButtonCustom";
+import {TaskElementWeek} from "./TaskElementWeek";
+import {TaskNote} from "./TaskNote";
 
 export function CalendarMaand(props) {
     const {tasks} = props;
@@ -72,7 +74,9 @@ function MonthGrid(props) {
     }
     //add current month days
     for (let i = 1; i < dayCount + 1; i++) {
-        elements = [...elements, <DayElement key={keyCount} title={i}></DayElement>];
+        elements = [...elements, <DayElement key={keyCount} title={i}>
+            {tasks.map(task=> <TaskNote key={task.id} task={task}/>)}
+        </DayElement>];
         keyCount++;
         if (count === 7) {
             elements = [...elements, <Col key={keyCount} xs={12}></Col>]
