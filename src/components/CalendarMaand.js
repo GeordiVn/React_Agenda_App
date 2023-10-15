@@ -50,14 +50,16 @@ function MonthGrid(props) {
     const {date, tasks} = props;
     const start = startOfMonth(date);
     const end = endOfMonth(date)
-    let count = dayNameNumbers[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
     const dayCount = getDaysInMonth(start);
+
     let elements = [];
+    let count = dayNameNumbers[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
+    let keyCount = 0;
 
     //add empty days
     if (count !== 1) {
         for (let i = 0; i < count - 1; i++) {
-            elements = [...elements, <DayElement style={{
+            elements = [...elements, <DayElement key={keyCount} style={{
                 backgroundColor: '#d1c7b0',
                 color: 'black',
                 borderRadius: '10px',
@@ -65,21 +67,25 @@ function MonthGrid(props) {
                 marginRight: '5px',
                 height: '100px'
             }}></DayElement>]
+            keyCount++;
         }
     }
     //add current month days
     for (let i = 1; i < dayCount + 1; i++) {
-        elements = [...elements, <DayElement key={i} title={i}></DayElement>];
+        elements = [...elements, <DayElement key={keyCount} title={i}></DayElement>];
+        keyCount++;
         if (count === 7) {
-            elements = [...elements, <Col xs={12}></Col>]
+            elements = [...elements, <Col key={keyCount} xs={12}></Col>]
             count = 0
+            keyCount++;
         }
         count++;
+
     }
     //add empty days
     if (lastDayOfMonth(date).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
         for (let i = 0; i < 7 - dayNameNumbers[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
-            elements = [...elements, <DayElement style={{
+            elements = [...elements, <DayElement key={keyCount} style={{
                 backgroundColor: '#d1c7b0',
                 color: 'black',
                 borderRadius: '10px',
@@ -87,6 +93,7 @@ function MonthGrid(props) {
                 marginRight: '5px',
                 height: '100px'
             }}></DayElement>]
+            keyCount++;
         }
     }
     return elements;

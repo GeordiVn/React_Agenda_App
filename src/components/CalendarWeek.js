@@ -6,6 +6,7 @@ import {endOfWeek, startOfWeek} from "date-fns";
 import {useState} from "react";
 import {ButtonCustom} from "./ButtonCustom";
 import {SelectionBar} from "./SelectionBar";
+import PropTypes from "prop-types";
 
 
 export function CalendarWeek(props) {
@@ -23,6 +24,15 @@ export function CalendarWeek(props) {
     </div>
 }
 
+CalendarWeek.propTypes = {
+    task: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })
+};
 
 function WeekSelector(props) {
     const {weekRange, onWeekRangeChanged} = props;
