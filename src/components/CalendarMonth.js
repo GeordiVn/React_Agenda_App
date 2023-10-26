@@ -7,7 +7,7 @@ import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} fro
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 
-export function CalendarMaand(props) {
+export function CalendarMonth(props) {
     const {tasks} = props;
     const [dateSelected, setDateSelected] = useState(new Date());
     return <div>

@@ -3,11 +3,11 @@ import {OptionBar} from "../components/OptionBar";
 import {ButtonCustom} from "../components/ButtonCustom.js";
 import {useState} from "react";
 import {CalendarWeek} from "../components/CalendarWeek";
-import {CalendarMaand} from "../components/CalendarMaand";
-import {CalenderJaar} from "../components/CalenderJaar";
+import {CalendarMonth} from "../components/CalendarMonth";
 import {collection} from "firebase/firestore";
 import {firestoreDB} from "../services/firebase";
 import {useCollectionData} from "react-firebase-hooks/firestore";
+import {CalendarYear} from "../components/CalendarYear";
 
 
 const taskConverter = {
@@ -31,12 +31,12 @@ export function CalendarPage() {
                                   title={'Week'}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarMaand tasks={values}/>)}
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarMonth tasks={values}/>)}
                                   title={'Maand'}/>
 
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalenderJaar/>)}
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarYear/>)}
                                   title={'Jaar'}/>
                 </Col>
             </Row>
