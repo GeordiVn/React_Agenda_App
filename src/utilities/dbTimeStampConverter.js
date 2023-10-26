@@ -1,9 +1,6 @@
 export function dbTimeStampConverterToDate(timeStampDate)
 {
-    const date = timeStampDate.toDate().toLocaleDateString('nl-BE')
-
-
-    return date;
+    return timeStampDate.toDate().toLocaleDateString('nl-BE');
 }
 
 export function dbTimeStampConverterToTime(timeStampDate)

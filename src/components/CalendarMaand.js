@@ -4,9 +4,7 @@ import {useState} from "react";
 import {Section} from "./Section";
 import {Col, Row} from "react-bootstrap";
 import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
-import {forEach, map} from "react-bootstrap/ElementChildren";
 import {ButtonCustom} from "./ButtonCustom";
-import {TaskElementWeek} from "./TaskElementWeek";
 import {TaskNote} from "./TaskNote";
 
 export function CalendarMaand(props) {
@@ -103,7 +101,7 @@ function MonthGrid(props) {
     return elements;
 }
 
-const dayNames = ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'];
+const dayNames = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
 const dayNameNumbers = {
     maandag: 1, dinsdag: 2, woensdag: 3, donderdag: 4, vrijdag: 5, zaterdag: 6, zondag: 7
 };

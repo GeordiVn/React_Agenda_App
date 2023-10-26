@@ -23,7 +23,7 @@ export function CalendarPage() {
     const query = collection(firestoreDB, 'Task').withConverter(taskConverter);
     const [values, loading, error] = useCollectionData(query);
     if (loading) return <></>;
-    return <Container>
+    return <Container fluid={"md"} className={"p-0  g-0"} >
         <OptionBar>
             <Row className={'g-0'}>
                 <Col xs={"auto"}>

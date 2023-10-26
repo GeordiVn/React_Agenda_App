@@ -4,11 +4,10 @@ import {dbTimeStampConverterToDate, dbTimeStampConverterToTime} from "../utiliti
 
 export function Section(props) {
     const {children} = props;
-    return <Row className={'g-0'} style={{
+    return <Row className={'g-0 p-md-1'} style={{
         backgroundColor: '#B5CB99',
         borderRadius: '10px',
         color: 'white',
-        padding: '1.5rem',
         marginTop: '1.5rem'
     }}>
         {children}
