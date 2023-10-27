@@ -1,16 +1,19 @@
 import {Section} from "./Section";
-import {OptionBar} from "./OptionBar";
 import {SelectionBar} from "./SelectionBar";
 import {useState} from "react";
 import {Col} from "react-bootstrap";
-import {getDaysInMonth} from "date-fns";
+import {getDate, getDaysInMonth} from "date-fns";
+import {TaskData} from "./TaskData";
 
 export function CalendarYear(props) {
+    const {tasks} = props;
     const [dateSelected, setDateSelected] = useState(new Date());
     return <div>
         <YearSelector dateSelected={dateSelected}/>
         <Section>
-            {MONTHS_IN_YEAR.map((month, index) => <MonthColumn key={month.number} month={month.month}
+            {MONTHS_IN_YEAR.map((month, index) => <MonthColumn key={month.number}
+                                                               tasks={tasks}
+                                                               month={month}
                                                                dateSelected={dateSelected.setMonth(month.number)}/>)}
         </Section>
     </div>
@@ -24,28 +27,35 @@ function YearSelector(props) {
 }
 
 function MonthColumn(props) {
-    const {dateSelected, month} = props;
-    const daysInMonth = getDaysInMonth(dateSelected)
-    return <Col xs={2} className={"p-2"}>
+    const {dateSelected, tasks, month} = props;
+    return <Col xs={4} md={3} lg={2} className={"p-2"}>
         <div className={"rounded-2 mb-3 p-2 text-black"} style={{backgroundColor: '#FCE09B'}}>
-            <h6 className={"text-center"}>{month}</h6>
-            {generateDaysForMonth(daysInMonth, month)}
+            <h6 className={"text-center"}>{month.month}</h6>
+            {generateDaysForMonth(dateSelected, tasks, month)}
         </div>
     </Col>
 }
 
 function DayForMonth(props) {
-    const {title} = props;
+    const {title, tasks} = props;
+    //console.log(tasks);
     return <div>
         <p>{title}</p>
+        {tasks.map(task => <TaskData title={"lol"}/>)}
     </div>
 }
 
-function generateDaysForMonth(daysInMonth) {
+function generateDaysForMonth(dateSelected, tasks, month) {
+    const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
+    //console.log(new Date(dateSelected).getMonth());
+    //console.log(tasks.map(task => task.date.toDate().getMonth()));
+    //console.log(tasks.map(task => (task.date.toDate().getMonth()+1) +"-----"+ new Date(dateSelected).getMonth()));
+    console.log(tasks.map(task => task.date.toDate().getFullYear() + "-----"));
     for (let i = 1; i < daysInMonth + 1; i++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth title={i}/>]
-        console.table(daysMonthArray);
+        daysMonthArray = [[...daysMonthArray],
+            <DayForMonth title={i}
+                         tasks={tasks.filter(task => task.date.toDate().getMonth() === new Date(dateSelected).getMonth() && task.date.toDate().getDate() === i && task.date.toDate().getFullYear() === new Date(dateSelected).getFullYear())}/>]
     }
     return daysMonthArray;
 }

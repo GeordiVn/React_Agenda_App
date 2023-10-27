@@ -1,4 +1,4 @@
-import {Col, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 export function Section(props) {
     const {children} = props;
