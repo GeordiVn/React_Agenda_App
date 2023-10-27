@@ -21,11 +21,11 @@ export function CalendarYear(props) {
 }
 
 function YearSelector(props) {
-    const {dateSelected,onDateSelectedChanged} = props;
+    const {dateSelected, onDateSelectedChanged} = props;
     return <SelectionBar>
-        <ButtonCustom onClick={()=> onDateSelectedChanged(addYears(dateSelected,-1))} title={"Vorig jaar"}/>
-        <ButtonCustom onClick={()=> onDateSelectedChanged(addYears(dateSelected,1))} title={"Volgend jaar"}/>
-        <ButtonCustom onClick={()=> onDateSelectedChanged(new Date())} title={"Dit jaar"}/>
+        <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, -1))} title={"Vorig jaar"}/>
+        <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, 1))} title={"Volgend jaar"}/>
+        <ButtonCustom onClick={() => onDateSelectedChanged(new Date())} title={"Dit jaar"}/>
         <p style={{color: 'white'}}>{dateSelected.toLocaleDateString('nl-BE')}</p>
     </SelectionBar>
 }
@@ -54,9 +54,6 @@ function DayForMonth(props) {
 function generateDaysForMonth(dateSelected, tasks, month) {
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
-    //console.log(new Date(dateSelected).getMonth());
-    //console.log(tasks.map(task => task.date.toDate().getMonth()));
-    //console.log(tasks.map(task => (task.date.toDate().getMonth()+1) +"-----"+ new Date(dateSelected).getMonth()));
     console.log(tasks.map(task => task.date.toDate().getFullYear() + "-----"));
     for (let i = 1; i < daysInMonth + 1; i++) {
         daysMonthArray = [[...daysMonthArray], <DayForMonth title={i}
@@ -67,14 +64,11 @@ function generateDaysForMonth(dateSelected, tasks, month) {
 
 
 const MONTHS_IN_YEAR = [{number: 0, month: "januari"}, {number: 1, month: "februari"}, {
-    number: 2,
-    month: "maart"
+    number: 2, month: "maart"
 }, {number: 3, month: "april"}, {number: 4, month: "mei"}, {number: 5, month: "juni"}, {
-    number: 6,
-    month: "juli"
+    number: 6, month: "juli"
 }, {number: 7, month: "augustus"}, {number: 8, month: "september"}, {number: 9, month: "oktober"}, {
-    number: 10,
-    month: "november"
+    number: 10, month: "november"
 }, {number: 11, month: "december"},
 
 ]

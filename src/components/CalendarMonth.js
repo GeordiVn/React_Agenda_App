@@ -73,7 +73,7 @@ function MonthGrid(props) {
     //add current month days
     for (let i = 1; i < dayCount + 1; i++) {
         elements = [...elements, <DayElement key={keyCount} title={i}>
-            {tasks.map(task=> <TaskNote key={task.id} task={task}/>)}
+            {tasks.map(task => <TaskNote key={task.id} task={task}/>)}
         </DayElement>];
         keyCount++;
         if (count === 7) {
