@@ -9,7 +9,7 @@ import {AddTask} from "../components/AddTask";
 
 
 export function CalendarPage(props) {
-    const {tasks} = props;
+    const {tasks,collectionRef} = props;
     const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
     const [dateSelected, setSelectedDate] = useState(new Date());
     const [show,setShow] = useState(false);
@@ -43,7 +43,7 @@ export function CalendarPage(props) {
                 </Col>
             </Row>
         </OptionBar>
-        <AddTask title={"Nieuw"} show={show} onShowChanged={setShow}/>
+        <AddTask collectionRef={collectionRef} title={"Nieuw"} show={show} onShowChanged={setShow}/>
         {layout}
     </Container>
 }
