@@ -1,6 +1,4 @@
 import {Col, Row} from "react-bootstrap";
-import {DeleteButton} from "./DeleteButton";
-import {dbTimeStampConverterToDate, dbTimeStampConverterToTime} from "../utilities/dbTimeStampConverter";
 
 export function Section(props) {
     const {children} = props;

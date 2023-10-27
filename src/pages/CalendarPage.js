@@ -36,7 +36,7 @@ export function CalendarPage() {
 
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarYear/>)}
+                    <ButtonCustom onLayoutChanged={setLayout} onClick={() => setLayout(<CalendarYear tasks={values}/>)}
                                   title={'Jaar'}/>
                 </Col>
             </Row>
