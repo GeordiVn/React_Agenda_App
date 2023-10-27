@@ -65,7 +65,7 @@ function MonthGrid(props) {
                 borderRadius: '10px',
                 marginBottom: '5px',
                 marginRight: '5px',
-                height: '100px'
+                height: '150px'
             }}></DayElement>]
             keyCount++;
         }
@@ -93,7 +93,7 @@ function MonthGrid(props) {
                 borderRadius: '10px',
                 marginBottom: '5px',
                 marginRight: '5px',
-                height: '100px'
+                height: '150px'
             }}></DayElement>]
             keyCount++;
         }

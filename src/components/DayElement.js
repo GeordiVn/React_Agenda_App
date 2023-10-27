@@ -9,7 +9,7 @@ export function DayElement(props) {
         borderRadius: '10px',
         marginBottom: '5px',
         marginRight: '5px',
-        height: '100px',
+        height: '150px',
         overflowY:'scroll'
     }}>
         <div className={'text-center'}>
