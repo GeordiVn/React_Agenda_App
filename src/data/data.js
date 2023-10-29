@@ -5,3 +5,6 @@ export const dayNameNumbers = {
 export const dayNumberNames = {
     1: "Maandag", 2: 'Dinsdag', 3: 'Woensdag', 4: 'Donderdag', 5: 'Vrijdag', 6: 'Zaterdag', 7: 'Zondag'
 };
+export const priorityColor = {
+    0: 'white', 1: 'orange', 2: 'red'
+}

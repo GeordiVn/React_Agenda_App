@@ -11,7 +11,10 @@ const arrowStyle = {color: '#000'};
 export function TaskNote(props) {
     const {task, tasks,children} = props
     const [open, setIsOpen] = useState(false);
-    return <a href={"javascript:void(0)"} onClick={() => setIsOpen(true)}>
+    return <a href={"#"} onClick={(event) => {
+        event.preventDefault();
+        setIsOpen(true);
+    }}>
         {children}
         <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen}/>
     </a>

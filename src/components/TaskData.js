@@ -1,16 +1,19 @@
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
+import {priorityColor} from "../data/data";
 
 export function TaskData(props) {
     const {title, data, priority} = props;
-    return <p><span style={{fontSize: 'large', fontWeight: 'bold', color: priority? priorityColor[priority]:"white"}}>{title}: </span>{data}</p>
+    return <p><span style={{
+        fontSize: 'large',
+        fontWeight: 'bold',
+        color: priority ? priorityColor[priority] : "white"
+    }}>{title}: </span>{data}</p>
 }
 
-TaskData.propTypes={
-    title:PropTypes.string,
-    data:PropTypes.string,
-    priority:PropTypes.string
+TaskData.propTypes = {
+    title: PropTypes.string,
+    data: PropTypes.string,
+    priority: PropTypes.number
 }
-const priorityColor = {
-    0: 'white', 1: 'orange', 2: 'red'
-}
+

@@ -6,10 +6,15 @@ import {DeleteButton} from "./DeleteButton";
 import PropTypes from "prop-types";
 import {Section} from "./Section";
 import {TaskData} from "./TaskData";
+import {EditButton} from "./EditButton";
+import {IconButton} from "./IconButton";
+import {BiEdit} from "react-icons/bi";
+import {TiDelete} from "react-icons/ti";
+import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 export function TaskElementWeek(props) {
     const {task} = props
-
+    const {setShow, setTask,setTitle} = useTaskManagerContext();
 
     return <Section>
         <Row className={'g-0'}>
@@ -17,7 +22,18 @@ export function TaskElementWeek(props) {
                 <TaskData title={'Task'} priority={task.priority} data={task.title}/>
             </Col>
             <Col className={'text-end'}>
-                <DeleteButton />
+                <IconButton onClick={() => {
+                    setTask(task,setTitle("Wijzig"));
+                    setShow(true);
+                }}>
+                    <BiEdit style={{width: '35px', height: '35px'}}/>
+                </IconButton>
+                <IconButton onClick={() => {
+                    setTask(task);
+                    setShow(true);
+                }}>
+                    <TiDelete style={{width: '35px', height: '35px'}}/>
+                </IconButton>
             </Col>
         </Row>
         <TaskData title={'Datum'} data={dBTimeStampToLocaleDateString(task.date)}/>

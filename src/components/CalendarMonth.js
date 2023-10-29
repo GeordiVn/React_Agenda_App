@@ -3,11 +3,17 @@ import {DayElement} from "./DayElement";
 import {useState} from "react";
 import {Section} from "./Section";
 import {Col, Row} from "react-bootstrap";
-import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
+import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, setDay, startOfMonth} from "date-fns";
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
 import {dayNameNumbers, dayNames} from "../data/data";
+import {
+    dayMonthIsToday,
+    taskIsCurrentDay,
+    taskIsCurrentDayAndIsRepeat,
+    taskIsToday
+} from "../utilities/calendar_utilities";
 
 export function CalendarMonth(props) {
     const {tasks} = props;
@@ -73,15 +79,11 @@ function MonthGrid(props) {
         }
     }
     //add current month days
-    for (let i = 1; i < dayCount + 1; i++) {
-        elements = [...elements, <DayElement key={keyCount} title={i}>
-            {[...tasks].filter(task => task.date.toDate().getMonth() ===
-                new Date(dateSelected).getMonth() &&
-                task.date.toDate().getDate() ===
-                i && task.date.toDate().getFullYear() ===
-                new Date(dateSelected).getFullYear())
-                .map(task =>
-                    <TaskNote task={task}>
+    for (let day = 1; day < dayCount + 1; day++) {
+        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected,day)} title={day}>
+            {[...tasks].filter(task => taskIsCurrentDay(task,day,dateSelected)||taskIsCurrentDayAndIsRepeat(task,day,dateSelected))
+                .map((task,index) =>
+                    <TaskNote key={keyCount*index} task={task}>
                         <div className={"rounded-2"} style={{backgroundColor: '#B5CB99'}}>
                             <p>
                                 {task.title}

@@ -4,10 +4,12 @@ import {useState} from "react";
 import {ButtonCustom} from "./ButtonCustom";
 import {SelectionBar} from "./SelectionBar";
 import PropTypes from "prop-types";
+import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 
 export function CalendarWeek(props) {
-    const {tasks} = props;
+    const {tasks} = useTaskManagerContext();
+    const {onTaskEditChanged, onShowTaskManager} = props;
     const [weekRange, setWeekRange] = useState({
         start: startOfWeek(new Date(), {weekStartsOn: 1},), end: endOfWeek(new Date(), {weekStartsOn: 1})
     });
@@ -17,7 +19,8 @@ export function CalendarWeek(props) {
         <WeekSelector weekRange={weekRange} onWeekRangeChanged={setWeekRange}/>
         {[...tasks].sort((p1, p2) => p1.date.seconds - p2.date.seconds)
             .filter((p1) => p1.date.toDate() >= weekRange.start && p1.date.toDate() <= weekRange.end)
-            .map((task) => <TaskElementWeek key={task.id} task={task}/>)}
+            .map((task) => <TaskElementWeek onTaskEditChanged={onTaskEditChanged} onShowTaskManager={onShowTaskManager}
+                                            key={task.id} task={task}/>)}
     </div>
 }
 

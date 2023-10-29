@@ -5,14 +5,17 @@ import {useState} from "react";
 import {CalendarWeek} from "../components/CalendarWeek";
 import {CalendarMonth} from "../components/CalendarMonth";
 import {CalendarYear} from "../components/CalendarYear";
-import {AddTask} from "../components/AddTask";
+import {TaskManager} from "../components/TaskManager";
+import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 
 export function CalendarPage(props) {
-    const {tasks,collectionRef} = props;
-    const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
+
     const [dateSelected, setSelectedDate] = useState(new Date());
-    const [show,setShow] = useState(false);
+    const {tasks,setShow, setTitle, newTask} = useTaskManagerContext()
+    const [layout, setLayout] = useState(<CalendarWeek dateSelected={dateSelected}
+                                                       onDateSelectedChanged={setSelectedDate}
+                                                       tasks={tasks}/>);
     return <Container fluid={"md"} className={"p-0  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
@@ -39,11 +42,15 @@ export function CalendarPage(props) {
                                   title={'Jaar'}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom title={"Nieuw"} onClick={()=>setShow(true)}/>
+                    <ButtonCustom title={"Nieuw"} onClick={() => {
+                        setTitle("Nieuw");
+                        newTask();
+                        setShow(true);
+                    }}/>
                 </Col>
             </Row>
         </OptionBar>
-        <AddTask collectionRef={collectionRef} title={"Nieuw"} show={show} onShowChanged={setShow}/>
+        <TaskManager title={"Nieuw"}/>
         {layout}
     </Container>
 }
