@@ -10,13 +10,14 @@ import {TaskData} from "./TaskData";
 export function TaskElementWeek(props) {
     const {task} = props
 
+
     return <Section>
-        <Row className={'g-0 '}>
+        <Row className={'g-0'}>
             <Col xs={"10"}>
                 <TaskData title={'Task'} priority={task.priority} data={task.title}/>
             </Col>
             <Col className={'text-end'}>
-                <DeleteButton/>
+                <DeleteButton />
             </Col>
         </Row>
         <TaskData title={'Datum'} data={dbTimeStampConverterToDate(task.date)}/>

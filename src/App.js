@@ -25,7 +25,7 @@ const taskConverter = {
 }
 
 function App() {
-    const collectionRef = collection(firestoreDB, 'Task').withConverter(taskConverter);
+    const collectionRef = collection(firestoreDB, 'tasks').withConverter(taskConverter);
     const queryRef = query(collectionRef);
     const [values, loading] = useCollectionData(queryRef);
     if (loading) return <></>;

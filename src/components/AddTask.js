@@ -8,16 +8,14 @@ import {getDay, getMonth, getTime, getYear} from "date-fns";
 export function AddTask(props) {
     const {title, show, onShowChanged, collectionRef} = props;
     const [newTask, setNewTask] = useState({
-            title: "",
-            priority: 0,
-            date: {date: "", time: ""},
-            description: "",
-            repeat: false,
-            location: {_long: 0, _lat: 0}
-        }
-    );
-    return (
-        <Modal show={show} onHide={() => onShowChanged(!show)}>
+        title: "",
+        priority: 0,
+        date: {date: "", time: ""},
+        description: "",
+        repeat: false,
+        location: {_long: 0, _lat: 0}
+    });
+    return (<Modal show={show} onHide={() => onShowChanged(!show)}>
             <ModalHeader>
                 <h5>{title}</h5>
                 <Button className={"btn-close"} onClick={() => onShowChanged(false)}></Button>
@@ -39,29 +37,30 @@ export function AddTask(props) {
                     <Form.Label>Datum</Form.Label>
                     <Form.Control required={true} type={"date"} value={newTask.date.date}
                                   onChange={(e) => setNewTask({
-                                      ...newTask,
-                                      date: {date: e.target.value, time: newTask.date.time}
+                                      ...newTask, date: {date: e.target.value, time: newTask.date.time}
                                   })}></Form.Control>
                     <Form.Label>Tijd</Form.Label>
                     <Form.Control required={true} type={"time"} value={newTask.date.time} onChange={(e) => setNewTask({
-                        ...newTask,
-                        date: {date: newTask.date.date, time: e.target.value}
+                        ...newTask, date: {date: newTask.date.date, time: e.target.value}
                     })}></Form.Control>
 
 
                     <Form.Label>Omschrijving</Form.Label>
                     <Form.Control as={"textarea"} rows={3} value={newTask.description}
-                                  onChange={(e) => setNewTask({...newTask,description: e.target.value})}/>
+                                  onChange={(e) => setNewTask({...newTask, description: e.target.value})}/>
                     <Form.Label>Terugkomend</Form.Label>
-                    <Form.Switch value={newTask.repeat.toString()} onChange={(e) => setNewTask({...newTask,repeat: e.target.checked})}/>
+                    <Form.Switch value={newTask.repeat.toString()}
+                                 onChange={(e) => setNewTask({...newTask, repeat: e.target.checked})}/>
 
                 </Form>
                 <div className={"text-end mt-2"}>
-                    <ButtonCustom title={"Save"} onClick={() => saveNewTask(collectionRef, newTask)}/>
+                    <ButtonCustom title={"Save"} onClick={ async () => {
+                       await saveNewTask(collectionRef, newTask);
+                        onShowChanged(false);
+                    }}/>
                 </div>
             </ModalBody>
-        </Modal>
-    );
+        </Modal>);
 }
 
 async function saveNewTask(collectionRef, task) {

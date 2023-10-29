@@ -55,3 +55,11 @@ function WeekSelector(props) {
         <p style={{color: 'white'}}>Van {weekRange.start.toLocaleDateString('nl-BE')} tot {weekRange.end.toLocaleDateString('nl-BE')}</p>
     </SelectionBar>
 }
+
+WeekSelector.propTypes = {
+    weekRange: PropTypes.shape({
+        start: PropTypes.object,
+        end: PropTypes.object
+    }),
+    onWeekRangeChanged: PropTypes.func
+}

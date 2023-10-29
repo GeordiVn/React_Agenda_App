@@ -1,4 +1,6 @@
+import {TiDelete} from "react-icons/ti";
+
 export function DeleteButton(props)
 {
-    return <a href={'#'} onClick={e => e.preventDefault()}><img className={'icon'} src={'/icons/delete_icon.png'}/></a>
+    return <a href={'#'} onClick={e => e.preventDefault()}><TiDelete style={{width:'35px',height:'35px'}}/></a>
 }

@@ -6,6 +6,7 @@ import {Col, Row} from "react-bootstrap";
 import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
+import PropTypes from "prop-types";
 
 export function CalendarMonth(props) {
     const {tasks} = props;
@@ -14,7 +15,7 @@ export function CalendarMonth(props) {
         <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
         <Section>
             <DayOrderBar dayNames={dayNames}/>
-            <MonthGrid date={dateSelected} tasks={tasks}/>
+            <MonthGrid dateSelected={dateSelected} tasks={tasks}/>
         </Section>
     </div>
 }
@@ -47,9 +48,9 @@ function DayName(props) {
 }
 
 function MonthGrid(props) {
-    const {date, tasks} = props;
-    const start = startOfMonth(date);
-    const end = endOfMonth(date)
+    const {dateSelected, tasks} = props;
+    const start = startOfMonth(dateSelected);
+    const end = endOfMonth(dateSelected)
     const dayCount = getDaysInMonth(start);
 
     let elements = [];
@@ -73,7 +74,13 @@ function MonthGrid(props) {
     //add current month days
     for (let i = 1; i < dayCount + 1; i++) {
         elements = [...elements, <DayElement key={keyCount} title={i}>
-            {tasks.map(task => <TaskNote key={task.id} task={task}/>)}
+            {[...tasks].filter(task => task.date.toDate().getMonth() ===
+                new Date(dateSelected).getMonth() &&
+                task.date.toDate().getDate() ===
+                i && task.date.toDate().getFullYear() ===
+                new Date(dateSelected).getFullYear())
+                .map(task =>
+                    <TaskNote task={task}/>)}
         </DayElement>];
         keyCount++;
         if (count === 7) {
@@ -85,7 +92,7 @@ function MonthGrid(props) {
 
     }
     //add empty days
-    if (lastDayOfMonth(date).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
+    if (lastDayOfMonth(dateSelected).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
         for (let i = 0; i < 7 - dayNameNumbers[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
             elements = [...elements, <DayElement key={keyCount} style={{
                 backgroundColor: '#d1c7b0',
@@ -99,6 +106,11 @@ function MonthGrid(props) {
         }
     }
     return elements;
+}
+
+
+MonthGrid.propTypes = {
+    tasks: PropTypes.array, dateSelected: PropTypes.instanceOf(Date)
 }
 
 const dayNames = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
