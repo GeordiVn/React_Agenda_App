@@ -1,9 +1,9 @@
-export function dbTimeStampConverterToDate(timeStampDate)
+export function dBTimeStampToLocaleDateString(timeStampDate)
 {
     return timeStampDate.toDate().toLocaleDateString('nl-BE');
 }
 
-export function dbTimeStampConverterToTime(timeStampDate)
+export function dbTimeStampToTime(timeStampDate)
 {
     const date = timeStampDate.toDate();
     return date.getHours()+":"+ (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();

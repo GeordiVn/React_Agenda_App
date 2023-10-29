@@ -1,7 +1,7 @@
 import {Col, Row} from "react-bootstrap";
 import {
-    dbTimeStampConverterToDate, dbTimeStampConverterToTime
-} from "../utilities/dbTimeStampConverter";
+    dBTimeStampToLocaleDateString, dbTimeStampToTime
+} from "../utilities/db_time_date_utilities";
 import {DeleteButton} from "./DeleteButton";
 import PropTypes from "prop-types";
 import {Section} from "./Section";
@@ -20,8 +20,8 @@ export function TaskElementWeek(props) {
                 <DeleteButton />
             </Col>
         </Row>
-        <TaskData title={'Datum'} data={dbTimeStampConverterToDate(task.date)}/>
-        <TaskData title={'Om'} data={dbTimeStampConverterToTime(task.date)}/>
+        <TaskData title={'Datum'} data={dBTimeStampToLocaleDateString(task.date)}/>
+        <TaskData title={'Om'} data={dbTimeStampToTime(task.date)}/>
         <TaskData title={'Omschrijving'} data={task.description}/>
     </Section>
 }

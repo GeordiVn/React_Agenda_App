@@ -10,7 +10,7 @@ export function AddTask(props) {
     const [newTask, setNewTask] = useState({
         title: "",
         priority: 0,
-        date: {date: "", time: ""},
+        date: {date: new Date().toDateInputValue(), time: "00:00"},
         description: "",
         repeat: false,
         location: {_long: 0, _lat: 0}
@@ -73,3 +73,9 @@ async function saveNewTask(collectionRef, task) {
         console.log("Er is iets mis gegaan tijdens oplagen nieuwe task");
     }
 }
+
+Date.prototype.toDateInputValue = (function() {
+    const local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});

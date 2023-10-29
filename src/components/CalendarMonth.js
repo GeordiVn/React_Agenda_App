@@ -7,6 +7,7 @@ import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} fro
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
+import {dayNameNumbers, dayNames} from "../data/data";
 
 export function CalendarMonth(props) {
     const {tasks} = props;
@@ -80,7 +81,13 @@ function MonthGrid(props) {
                 i && task.date.toDate().getFullYear() ===
                 new Date(dateSelected).getFullYear())
                 .map(task =>
-                    <TaskNote task={task}/>)}
+                    <TaskNote task={task}>
+                        <div className={"rounded-2"} style={{backgroundColor: '#B5CB99'}}>
+                            <p>
+                                {task.title}
+                            </p>
+                        </div>
+                    </TaskNote>)}
         </DayElement>];
         keyCount++;
         if (count === 7) {
@@ -113,10 +120,3 @@ MonthGrid.propTypes = {
     tasks: PropTypes.array, dateSelected: PropTypes.instanceOf(Date)
 }
 
-const dayNames = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
-const dayNameNumbers = {
-    maandag: 1, dinsdag: 2, woensdag: 3, donderdag: 4, vrijdag: 5, zaterdag: 6, zondag: 7
-};
-const dayNumberNames = {
-    1: "Maandag", 2: 'Dinsdag', 3: 'Woensdag', 4: 'Donderdag', 5: 'Vrijdag', 6: 'Zaterdag', 7: 'Zondag'
-};

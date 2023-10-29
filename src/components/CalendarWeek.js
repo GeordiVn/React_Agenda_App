@@ -1,6 +1,3 @@
-import {firestoreDB} from "../services/firebase";
-import {useCollectionData} from "react-firebase-hooks/firestore";
-import {collection} from 'firebase/firestore';
 import {TaskElementWeek} from "./TaskElementWeek";
 import {endOfWeek, startOfWeek} from "date-fns";
 import {useState} from "react";

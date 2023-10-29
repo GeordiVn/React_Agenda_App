@@ -3,8 +3,9 @@ import {SelectionBar} from "./SelectionBar";
 import {useState} from "react";
 import {Col} from "react-bootstrap";
 import {addYears, getDaysInMonth} from "date-fns";
-
 import {ButtonCustom} from "./ButtonCustom";
+import {TaskNote} from "./TaskNote";
+import {taskIsCurrentDay, taskIsCurrentDayAndIsRepeat} from "../utilities/calendar_utilities";
 
 export function CalendarYear(props) {
     const {tasks} = props;
@@ -41,23 +42,25 @@ function MonthColumn(props) {
 }
 
 function DayForMonth(props) {
-    const {title, tasks} = props;
-    //console.log(tasks);
-    return <div className={"rounded-2 mb-1 "}
-                style={tasks ? {backgroundColor: '#B5CB99'} : {backgroundColor: '#FCE09B'}}>
-        <strong className={"ms-1"}>{title} {tasks.length > 0 ?
-            <span className={"text-white"}>Tasks:{tasks.length}</span> : ''}</strong>
-
+    const {title, tasks, today} = props;
+    return <div>
+        {!tasks.length > 0 ? <strong>{title}</strong> : <TaskNote tasks={tasks}>
+            <div className={"my-1"} style={{backgroundColor: '#B5CB99'}}>
+                <strong className={"text-black"}>{title}<span
+                    className={"ms-3 text-white"}>{tasks.length < 2 ? tasks.length + " Item" : tasks.length + " Items"}</span></strong>
+            </div>
+        </TaskNote>}
     </div>
+
+
 }
 
 function generateDaysForMonth(dateSelected, tasks, month) {
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
-    console.log(tasks.map(task => task.date.toDate().getFullYear() + "-----"));
-    for (let i = 1; i < daysInMonth + 1; i++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth title={i}
-                                                            tasks={tasks.filter(task => task.date.toDate().getMonth() === new Date(dateSelected).getMonth() && task.date.toDate().getDate() === i && task.date.toDate().getFullYear() === new Date(dateSelected).getFullYear())}/>]
+    for (let day = 1; day < daysInMonth + 1; day++) {
+        daysMonthArray = [[...daysMonthArray], <DayForMonth title={day}
+                                                            tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
     }
     return daysMonthArray;
 }
