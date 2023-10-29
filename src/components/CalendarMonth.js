@@ -12,11 +12,11 @@ import {
     dayMonthIsToday,
     taskIsCurrentDay,
     taskIsCurrentDayAndIsRepeat,
-    taskIsToday
 } from "../utilities/calendar_utilities";
+import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
-export function CalendarMonth(props) {
-    const {tasks} = props;
+export function CalendarMonth() {
+    const {tasks} = useTaskManagerContext();
     const [dateSelected, setDateSelected] = useState(new Date());
     return <div>
         <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
@@ -80,10 +80,10 @@ function MonthGrid(props) {
     }
     //add current month days
     for (let day = 1; day < dayCount + 1; day++) {
-        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected,day)} title={day}>
-            {[...tasks].filter(task => taskIsCurrentDay(task,day,dateSelected)||taskIsCurrentDayAndIsRepeat(task,day,dateSelected))
-                .map((task,index) =>
-                    <TaskNote key={keyCount*index} task={task}>
+        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day}>
+            {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
+                .map((task, index) =>
+                    <TaskNote key={keyCount * index} task={task}>
                         <div className={"rounded-2"} style={{backgroundColor: '#B5CB99'}}>
                             <p>
                                 {task.title}

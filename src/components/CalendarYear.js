@@ -6,9 +6,10 @@ import {addYears, getDaysInMonth} from "date-fns";
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import {taskIsCurrentDay, taskIsCurrentDayAndIsRepeat} from "../utilities/calendar_utilities";
+import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
-export function CalendarYear(props) {
-    const {tasks} = props;
+export function CalendarYear() {
+    const {tasks} = useTaskManagerContext();
     const [dateSelected, setDateSelected] = useState(new Date());
     return <div>
         <YearSelector dateSelected={dateSelected} onDateSelectedChanged={setDateSelected}/>
@@ -59,7 +60,7 @@ function generateDaysForMonth(dateSelected, tasks, month) {
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
     for (let day = 1; day < daysInMonth + 1; day++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth title={day}
+        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day*dateSelected.getMonth} title={day}
                                                             tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
     }
     return daysMonthArray;

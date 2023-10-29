@@ -10,35 +10,25 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 
 export function CalendarPage(props) {
-
-    const [dateSelected, setSelectedDate] = useState(new Date());
-    const {tasks,setShow, setTitle, newTask} = useTaskManagerContext()
-    const [layout, setLayout] = useState(<CalendarWeek dateSelected={dateSelected}
-                                                       onDateSelectedChanged={setSelectedDate}
-                                                       tasks={tasks}/>);
+    const {tasks, setShow, setTitle, newTask} = useTaskManagerContext()
+    const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
     return <Container fluid={"md"} className={"p-0  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
                 <Col xs={"auto"}>
                     <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarWeek dateSelected={dateSelected}
-                                                                         onDateSelectedChanged={setSelectedDate}
-                                                                         tasks={tasks}/>)}
+                                  onClick={() => setLayout(<CalendarWeek tasks={tasks}/>)}
                                   title={'Week'}/>
                 </Col>
                 <Col xs={"auto"}>
                     <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarMonth dateSelected={dateSelected}
-                                                                          onDateSelectedChanged={setSelectedDate}
-                                                                          tasks={tasks}/>)}
+                                  onClick={() => setLayout(<CalendarMonth tasks={tasks}/>)}
                                   title={'Maand'}/>
 
                 </Col>
                 <Col xs={"auto"}>
                     <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarYear dateSelected={dateSelected}
-                                                                         onDateSelectedChanged={setSelectedDate}
-                                                                         tasks={tasks}/>)}
+                                  onClick={() => setLayout(<CalendarYear tasks={tasks}/>)}
                                   title={'Jaar'}/>
                 </Col>
                 <Col xs={"auto"}>
@@ -50,7 +40,7 @@ export function CalendarPage(props) {
                 </Col>
             </Row>
         </OptionBar>
-        <TaskManager title={"Nieuw"}/>
+        <TaskManager/>
         {layout}
     </Container>
 }

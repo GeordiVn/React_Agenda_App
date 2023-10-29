@@ -1,5 +1,5 @@
 import React, {createContext, useCallback, useContext, useMemo, useState} from "react";
-import {addDoc, collection, GeoPoint, query, updateDoc} from "firebase/firestore";
+import {addDoc, deleteDoc, collection, GeoPoint, query, updateDoc} from "firebase/firestore";
 import {firestoreDB} from "../services/firebase";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 
@@ -48,6 +48,9 @@ export function TaskManagerProvider(props) {
             date: {date: task.date.toDate().toDateInputValue(), time: task.date.toDate().toLocaleTimeString()}
         })
     }, [])
+    const deleteTask = useCallback(async (task) => {
+        await deleteDoc(task.ref)
+    }, [])
     const saveTask = useCallback(async (task) => {
         const taskForSave = {...task, date: new Date(task.date.date + "T" + task.date.time)}
         try {
@@ -57,11 +60,11 @@ export function TaskManagerProvider(props) {
             console.log(e);
             console.log("Er is iets mis gegaan tijdens oplagen nieuwe task");
         }
-    }, [])
+    }, [collectionRef])
 
     const api = useMemo(() => ({
-        tasks, clearEditTask, editTask, newTask, show, setShow, storeTaskChanges, title, setTask, setTitle, saveTask
-    }), [tasks, clearEditTask, editTask, setTask, newTask, storeTaskChanges, show, setShow, title, setTitle, saveTask]);
+        tasks, clearEditTask, editTask, newTask, show, setShow, storeTaskChanges, title, setTask, setTitle, saveTask,deleteTask
+    }), [tasks, clearEditTask, editTask, setTask, newTask, storeTaskChanges, show, setShow, title, setTitle, saveTask,deleteTask]);
 
     return <TaskManagerContext.Provider value={api}>
         {loading ? <></> : props.children}
