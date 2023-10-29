@@ -10,7 +10,7 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 export function CalendarYear() {
     const {tasks} = useTaskManagerContext();
-    const [dateSelected, setDateSelected] = useState(new Date());
+    const [dateSelected, setDateSelected] = useState(new Date(new Date().getFullYear(), 0, 1));
     return <div>
         <YearSelector dateSelected={dateSelected} onDateSelectedChanged={setDateSelected}/>
         <Section>
@@ -57,22 +57,29 @@ function DayForMonth(props) {
 }
 
 function generateDaysForMonth(dateSelected, tasks, month) {
+    console.log(new Date(dateSelected).toLocaleDateString("nl-BE"));
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
     for (let day = 1; day < daysInMonth + 1; day++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day*dateSelected.getMonth} title={day}
+        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day * dateSelected.getMonth} title={day}
                                                             tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
     }
     return daysMonthArray;
 }
 
 
-const MONTHS_IN_YEAR = [{number: 0, month: "januari"}, {number: 1, month: "februari"}, {
-    number: 2, month: "maart"
-}, {number: 3, month: "april"}, {number: 4, month: "mei"}, {number: 5, month: "juni"}, {
-    number: 6, month: "juli"
-}, {number: 7, month: "augustus"}, {number: 8, month: "september"}, {number: 9, month: "oktober"}, {
-    number: 10, month: "november"
-}, {number: 11, month: "december"},
+const MONTHS_IN_YEAR = [
+    {number: 0, month: "januari"},
+    {number: 1, month: "februari"},
+    {number: 2, month: "maart"},
+    {number: 3, month: "april"},
+    {number: 4, month: "mei"},
+    {number: 5, month: "juni"},
+    {number: 6, month: "juli"},
+    {number: 7, month: "augustus"},
+    {number: 8, month: "september"},
+    {number: 9, month: "oktober"},
+    {number: 10, month: "november"},
+    {number: 11, month: "december"},
 
 ]

@@ -3,7 +3,7 @@ import {DayElement} from "./DayElement";
 import {useState} from "react";
 import {Section} from "./Section";
 import {Col, Row} from "react-bootstrap";
-import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, setDay, startOfMonth} from "date-fns";
+import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
@@ -16,8 +16,9 @@ import {
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 export function CalendarMonth() {
-    const {tasks} = useTaskManagerContext();
     const [dateSelected, setDateSelected] = useState(new Date());
+    const {tasks} = useTaskManagerContext();
+
     return <div>
         <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
         <Section>
@@ -83,7 +84,7 @@ function MonthGrid(props) {
         elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day}>
             {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
                 .map((task, index) =>
-                    <TaskNote key={keyCount * index} task={task}>
+                    <TaskNote key={keyCount * index*100} task={task}>
                         <div className={"rounded-2"} style={{backgroundColor: '#B5CB99'}}>
                             <p>
                                 {task.title}

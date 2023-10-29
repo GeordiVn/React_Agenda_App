@@ -45,7 +45,7 @@ export function TaskManager() {
                 <Form.Control as={"textarea"} rows={3} value={editTask.description}
                               onChange={(e) => storeTaskChanges({...editTask, description: e.target.value})}/>
                 <Form.Label>Terugkomend</Form.Label>
-                <Form.Switch value={editTask.repeat.toString()}
+                <Form.Switch value={editTask.repeat.toString()} defaultChecked={Boolean(editTask.repeat)}
                              onChange={(e) => storeTaskChanges({...editTask, repeat: e.target.checked})}/>
 
             </Form>
