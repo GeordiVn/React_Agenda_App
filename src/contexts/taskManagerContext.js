@@ -16,8 +16,7 @@ const taskConverter = {
             repeat: Boolean(dataInApp.repeat),
             priority: Number(dataInApp.priority)
         };
-    },
-    fromFirestore: function (snapshot, options) {
+    }, fromFirestore: function (snapshot, options) {
         const data = snapshot.data(options);
         return {...data, id: snapshot.id, ref: snapshot.ref}
     }
@@ -25,8 +24,7 @@ const taskConverter = {
 }
 
 export function TaskManagerProvider(props) {
-    const collectionRef = useMemo(() =>
-        collection(firestoreDB, 'tasks').withConverter(taskConverter), []);
+    const collectionRef = useMemo(() => collection(firestoreDB, 'tasks').withConverter(taskConverter), []);
     const queryRef = useMemo(() => query(collectionRef), [collectionRef]);
     const [tasks, loading] = useCollectionData(queryRef);
     const [editTask, setEditTask] = useState(NEW_TASK);
@@ -44,8 +42,7 @@ export function TaskManagerProvider(props) {
     }, [])
     const setTask = useCallback((task) => {
         setEditTask({
-            ...task,
-            date: {date: task.date.toDate().toDateInputValue(), time: task.date.toDate().toLocaleTimeString()}
+            ...task, date: {date: task.date.toDate().toDateInputValue(), time: task.date.toDate().toLocaleTimeString()}
         })
     }, [])
     const deleteTask = useCallback(async (task) => {
@@ -63,8 +60,24 @@ export function TaskManagerProvider(props) {
     }, [collectionRef])
 
     const api = useMemo(() => ({
-        tasks, clearEditTask, editTask, newTask, show, setShow, storeTaskChanges, title, setTask, setTitle, saveTask,deleteTask
-    }), [tasks, clearEditTask, editTask, setTask, newTask, storeTaskChanges, show, setShow, title, setTitle, saveTask,deleteTask]);
+        tasks,
+        clearEditTask,
+        editTask,
+        newTask,
+        show,
+        setShow,
+        storeTaskChanges,
+        title,
+        setTask,
+        setTitle,
+        saveTask,
+        deleteTask
+    }), [tasks,
+        clearEditTask,
+        editTask,
+        setTask,
+        newTask,
+        storeTaskChanges, show, setShow, title, setTitle, saveTask, deleteTask]);
 
     return <TaskManagerContext.Provider value={api}>
         {loading ? <></> : props.children}

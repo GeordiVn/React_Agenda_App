@@ -1,4 +1,4 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row, Form} from "react-bootstrap";
 import {OptionBar} from "../components/OptionBar";
 import {ButtonCustom} from "../components/ButtonCustom.js";
 import {useState} from "react";
@@ -7,11 +7,13 @@ import {CalendarMonth} from "../components/CalendarMonth";
 import {CalendarYear} from "../components/CalendarYear";
 import {TaskManager} from "../components/TaskManager";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useLocalStorage} from "@uidotdev/usehooks";
 
 
 export function CalendarPage(props) {
     const {tasks, setShow, setTitle, newTask} = useTaskManagerContext()
     const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
+    const [colorScheme, setColorScheme] = useLocalStorage("defaultColorScheme", 0);
     return <Container fluid={"md"} className={"p-0  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
@@ -37,6 +39,12 @@ export function CalendarPage(props) {
                         newTask();
                         setShow(true);
                     }}/>
+                </Col>
+                <Col xs={"auto"}>
+                    <Form.Select defaultValue={colorScheme} onChange={(event) => setColorScheme(Number(event.target.value))}>
+                        <option value={0}>Lightmode</option>
+                        <option value={1}>Dark mode</option>
+                    </Form.Select>
                 </Col>
             </Row>
         </OptionBar>

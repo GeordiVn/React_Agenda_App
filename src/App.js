@@ -8,9 +8,7 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 import {TaskManagerProvider} from "./contexts/taskManagerContext";
 
 
-
-
-function ProvidedApp(props) {
+function ProvidedApp() {
     return (<div>
         <CalendarPage/>
     </div>)
