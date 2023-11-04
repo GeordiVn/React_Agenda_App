@@ -5,7 +5,6 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 
 const TaskManagerContext = createContext();
 
-
 const taskConverter = {
     toFirestore: function (dataInApp) {
         return {

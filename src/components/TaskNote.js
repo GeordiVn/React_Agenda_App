@@ -7,10 +7,7 @@ import {IconButton} from "./IconButton";
 import {BiEdit} from "react-icons/bi";
 import {Col, Row} from "react-bootstrap";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
-
-const contentStyle = {background: '#B5CB99', borderRadius: '10px'};
-const overlayStyle = {background: 'rgba(223,229,229,0.29)'};
-const arrowStyle = {color: '#000'};
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function TaskNote(props) {
     const {task, tasks, children} = props
@@ -26,15 +23,15 @@ export function TaskNote(props) {
 
 function TaskPopUp(props) {
     const {task, tasks, open, onOpenChanged} = props;
-
-    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={arrowStyle} overlayStyle={overlayStyle}
-                  contentStyle={contentStyle}
+    const {colorPallet} = useColorSchemeContext();
+    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle} overlayStyle={colorPallet.taskNote.overlayStyle}
+                  contentStyle={colorPallet.taskNote.contentStyle}
                   children={task ? <TaskPopUpData task={task}/> : tasks.map(task => <TaskPopUpData key={task.id}
                                                                                                    task={task}/>)}/>
 }
 
 function TaskPopUpData(props) {
-    const {setTask, setShow, setTitle, newTask} = useTaskManagerContext()
+    const {setTask, setShow, setTitle} = useTaskManagerContext()
     const {task} = props;
     return <div className={"rounded-2 m-2 p-2"} style={{backgroundColor: '#FCE09B'}}>
         <Row>

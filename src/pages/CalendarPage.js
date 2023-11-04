@@ -7,13 +7,14 @@ import {CalendarMonth} from "../components/CalendarMonth";
 import {CalendarYear} from "../components/CalendarYear";
 import {TaskManager} from "../components/TaskManager";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useLocalStorage} from "@uidotdev/usehooks";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 
-export function CalendarPage(props) {
+export function CalendarPage() {
     const {tasks, setShow, setTitle, newTask} = useTaskManagerContext()
+    const {colorScheme, setColorScheme} = useColorSchemeContext();
     const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
-    const [colorScheme, setColorScheme] = useLocalStorage("defaultColorScheme", 0);
+
     return <Container fluid={"md"} className={"p-0  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
@@ -41,7 +42,7 @@ export function CalendarPage(props) {
                     }}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <Form.Select defaultValue={colorScheme} onChange={(event) => setColorScheme(Number(event.target.value))}>
+                    <Form.Select defaultValue={colorScheme} onChange={e => setColorScheme(Number(e.target.value))}>
                         <option value={0}>Lightmode</option>
                         <option value={1}>Dark mode</option>
                     </Form.Select>

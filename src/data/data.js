@@ -8,3 +8,21 @@ export const dayNumberNames = {
 export const priorityColor = {
     0: 'white', 1: 'orange', 2: 'red'
 }
+
+export const COLOR_SCHEME = {
+    light: {
+        taskNote:{
+            contentStyle:{background: '#B5CB99', borderRadius: '10px'},
+            overlayStyle:{background: 'rgba(223,229,229,0.29)'},
+            arrowStyle:{color: '#000'}
+        }
+
+    },
+    dark:{
+        taskNote:{
+            contentStyle:{background: '#B5CB99', borderRadius: '10px'},
+            overlayStyle:{background: 'rgba(223,229,229,0.29)'},
+            arrowStyle:{color: '#000'}
+        }
+    }
+}
