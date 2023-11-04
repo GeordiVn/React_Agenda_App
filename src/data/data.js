@@ -11,18 +11,35 @@ export const priorityColor = {
 
 export const COLOR_SCHEME = {
     light: {
-        taskNote:{
-            contentStyle:{background: '#B5CB99', borderRadius: '10px'},
-            overlayStyle:{background: 'rgba(223,229,229,0.29)'},
-            arrowStyle:{color: '#000'}
+        taskNote: {
+            contentStyle: {background: '#B5CB99', borderRadius: '10px'},
+            overlayStyle: {background: 'rgba(223,229,229,0.29)'},
+            arrowStyle: {color: '#000'}
+        },
+        section: {
+            style: {
+                backgroundColor: '#B5CB99',
+                borderRadius: '10px',
+                color: 'white',
+                marginTop: '1.5rem'
+            }
         }
-
     },
-    dark:{
-        taskNote:{
-            contentStyle:{background: '#B5CB99', borderRadius: '10px'},
-            overlayStyle:{background: 'rgba(223,229,229,0.29)'},
-            arrowStyle:{color: '#000'}
+
+
+    dark: {
+        taskNote: {
+            contentStyle: {background: '#B5CB99', borderRadius: '10px'},
+            overlayStyle: {background: 'rgba(223,229,229,0.29)'},
+            arrowStyle: {color: '#000'}
+        },
+        section: {
+            style: {
+                backgroundColor: '#111110',
+                borderRadius: '10px',
+                color: 'white',
+                marginTop: '1.5rem'
+            }
         }
     }
 }

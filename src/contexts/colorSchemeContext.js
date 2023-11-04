@@ -12,11 +12,15 @@ export function ColorSchemeProvider(props) {
     const [colorScheme, setColorScheme] = useLocalStorage("defaultColorScheme", 0);
     const [colorPallet, setColorPallet] = useState(colorScheme === 0 ? COLOR_SCHEME.light : COLOR_SCHEME.dark);
 
+    const changeColorPallet = useCallback((colorScheme)=>{
+        setColorScheme(colorScheme);
+        setColorPallet(colorScheme===0? COLOR_SCHEME.light:COLOR_SCHEME.dark)
+    },[]);
 
     const api = useMemo(() => ({
-        colorScheme, setColorScheme, colorPallet, setColorPallet
+        colorScheme, setColorScheme, colorPallet, changeColorPallet
 
-    }), [colorScheme, setColorScheme, colorPallet, setColorPallet]);
+    }), [colorScheme, setColorScheme, colorPallet, changeColorPallet]);
 
     return <ColorSchemeContext.Provider value={api}>
         {props.children}

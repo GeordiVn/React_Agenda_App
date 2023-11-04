@@ -8,11 +8,12 @@ import {CalendarYear} from "../components/CalendarYear";
 import {TaskManager} from "../components/TaskManager";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {COLOR_SCHEME} from "../data/data";
 
 
 export function CalendarPage() {
     const {tasks, setShow, setTitle, newTask} = useTaskManagerContext()
-    const {colorScheme, setColorScheme} = useColorSchemeContext();
+    const {colorScheme, changeColorPallet} = useColorSchemeContext();
     const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
 
     return <Container fluid={"md"} className={"p-0  g-0"}>
@@ -42,8 +43,8 @@ export function CalendarPage() {
                     }}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <Form.Select defaultValue={colorScheme} onChange={e => setColorScheme(Number(e.target.value))}>
-                        <option value={0}>Lightmode</option>
+                    <Form.Select defaultValue={colorScheme} onChange={e => changeColorPallet(Number(e.target.value))}>
+                        <option value={0}>Light mode</option>
                         <option value={1}>Dark mode</option>
                     </Form.Select>
                 </Col>

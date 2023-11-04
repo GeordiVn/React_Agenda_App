@@ -1,13 +1,10 @@
 import {Row} from "react-bootstrap";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function Section(props) {
     const {children} = props;
-    return <Row className={'g-0 p-md-1'} style={{
-        backgroundColor: '#B5CB99',
-        borderRadius: '10px',
-        color: 'white',
-        marginTop: '1.5rem'
-    }}>
+    const {colorPallet} = useColorSchemeContext()
+    return <Row className={'g-0 p-md-1'} style={colorPallet.section.style}>
         {children}
     </Row>
 }
