@@ -5,10 +5,12 @@ import {ButtonCustom} from "./ButtonCustom";
 import {SelectionBar} from "./SelectionBar";
 import PropTypes from "prop-types";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 
 export function CalendarWeek() {
     const {tasks} = useTaskManagerContext();
+    const {colorPallet} = useColorSchemeContext();
     const [weekRange, setWeekRange] = useState({
         start: startOfWeek(new Date(), {weekStartsOn: 1},), end: endOfWeek(new Date(), {weekStartsOn: 1})
     });
@@ -17,7 +19,7 @@ export function CalendarWeek() {
         <WeekSelector weekRange={weekRange} onWeekRangeChanged={setWeekRange}/>
         {[...tasks].sort((p1, p2) => p1.date.seconds - p2.date.seconds)
             .filter((p1) => p1.date.toDate() >= weekRange.start && p1.date.toDate() <= weekRange.end)
-            .map((task) => <TaskElementWeek  key={task.id} task={task}/>)}
+            .map((task) => <TaskElementWeek  key={task.id} task={task} customStyle={colorPallet}/>)}
     </div>
 }
 

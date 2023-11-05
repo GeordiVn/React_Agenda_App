@@ -10,30 +10,30 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function TaskNote(props) {
-    const {task, tasks, children,style} = props
+    const {task, tasks, children,customStyle} = props
     const [open, setIsOpen] = useState(false);
     return <a href={"#"} onClick={(event) => {
         event.preventDefault();
         setIsOpen(true);
     }}>
         {children}
-        <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen} style={style}/>
+        <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen} customStyle={customStyle}/>
     </a>
 }
 
 function TaskPopUp(props) {
-    const {task, tasks, open, onOpenChanged , style} = props;
+    const {task, tasks, open, onOpenChanged , customStyle} = props;
     const {colorPallet} = useColorSchemeContext();
     return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle} overlayStyle={colorPallet.taskNote.overlayStyle}
                   contentStyle={colorPallet.taskNote.contentStyle}
-                  children={task ? <TaskPopUpData task={task} style={style}/> : tasks.map(task => <TaskPopUpData key={task.id}
-                                                                                                   task={task} style={style}/>)}/>
+                  children={task ? <TaskPopUpData task={task} customStyle={customStyle}/> : tasks.map(task => <TaskPopUpData key={task.id}
+                                                                                                   task={task} customStyle={customStyle}/>)}/>
 }
 
 function TaskPopUpData(props) {
     const {setTask, setShow, setTitle} = useTaskManagerContext()
-    const {task,style} = props;
-    return <div className={"rounded-2 m-2 p-2"} style={style.taskNoteBackGround}>
+    const {task,customStyle} = props;
+    return <div className={"rounded-2 m-2 p-2"} style={customStyle.taskNoteBackGround}>
         <Row>
             <Col xs={10}>
                 <TaskData title={"Task: "} data={task.title}/>

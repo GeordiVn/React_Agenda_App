@@ -9,6 +9,22 @@ export const priorityColor = {
     0: 'white', 1: 'orange', 2: 'red'
 }
 
+export const MONTHS_IN_YEAR = [
+    {number: 0, month: "januari"},
+    {number: 1, month: "februari"},
+    {number: 2, month: "maart"},
+    {number: 3, month: "april"},
+    {number: 4, month: "mei"},
+    {number: 5, month: "juni"},
+    {number: 6, month: "juli"},
+    {number: 7, month: "augustus"},
+    {number: 8, month: "september"},
+    {number: 9, month: "oktober"},
+    {number: 10, month: "november"},
+    {number: 11, month: "december"},
+
+]
+
 export const COLOR_SCHEME = {
     light: {
         taskNote: {
@@ -84,10 +100,10 @@ export const COLOR_SCHEME = {
         monthColumnStyle: {
             backgroundColor: '#FCE09B'
         },
-        dayForMonth:{
+        dayForMonth: {
             backgroundColor: '#B5CB99'
         },
-        taskNoteBackGround:{
+        taskNoteBackGround: {
             backgroundColor: '#FCE09B'
         }
     },
@@ -104,7 +120,6 @@ export const COLOR_SCHEME = {
                 color: 'white',
                 marginTop: '1.5rem'
             }
-
         },
         body: {color: '#e8dedb'},
         selectionBar: {
@@ -164,10 +179,10 @@ export const COLOR_SCHEME = {
         monthColumnStyle: {
             backgroundColor: '#f1ad05'
         },
-        dayForMonth:{
+        dayForMonth: {
             backgroundColor: '#8ffd03'
         },
-        taskNoteBackGround:{
+        taskNoteBackGround: {
             backgroundColor: '#443b21'
         }
     }

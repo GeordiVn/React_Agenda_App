@@ -12,27 +12,24 @@ import {COLOR_SCHEME} from "../data/data";
 
 
 export function CalendarPage() {
-    const {tasks, setShow, setTitle, newTask} = useTaskManagerContext()
+    const {setShow, setTitle, newTask} = useTaskManagerContext()
     const {colorScheme, changeColorPallet} = useColorSchemeContext();
-    const [layout, setLayout] = useState(<CalendarWeek tasks={tasks}/>);
+    const [layout, setLayout] = useState(<CalendarWeek/>);
 
     return <Container fluid={"md"} className={"p-0  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarWeek tasks={tasks}/>)}
+                    <ButtonCustom onClick={() => setLayout(<CalendarWeek/>)}
                                   title={'Week'}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarMonth tasks={tasks}/>)}
+                    <ButtonCustom onClick={() => setLayout(<CalendarMonth/>)}
                                   title={'Maand'}/>
 
                 </Col>
                 <Col xs={"auto"}>
-                    <ButtonCustom onLayoutChanged={setLayout}
-                                  onClick={() => setLayout(<CalendarYear tasks={tasks}/>)}
+                    <ButtonCustom onClick={() => setLayout(<CalendarYear/>)}
                                   title={'Jaar'}/>
                 </Col>
                 <Col xs={"auto"}>
@@ -43,7 +40,7 @@ export function CalendarPage() {
                     }}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <Form.Select defaultValue={colorScheme} onChange={e => changeColorPallet(Number(e.target.value))}>
+                    <Form.Select defaultValue={Number(colorScheme)} onChange={e => changeColorPallet(Number(e.target.value))}>
                         <option value={0}>Light mode</option>
                         <option value={1}>Dark mode</option>
                     </Form.Select>

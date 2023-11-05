@@ -13,10 +13,10 @@ import {TiDelete} from "react-icons/ti";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 export function TaskElementWeek(props) {
-    const {task} = props
+    const {task,customStyle} = props
     const {setShow, setTask,setTitle} = useTaskManagerContext();
 
-    return <Section>
+    return <Section customStyle={customStyle}>
         <Row className={'g-0'}>
             <Col xs={"10"}>
                 <TaskData title={'Task'} priority={task.priority} data={task.title}/>

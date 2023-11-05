@@ -8,23 +8,20 @@ import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
 import {dayNameNumbers, dayNames} from "../data/data";
-import {
-    dayMonthIsToday,
-    taskIsCurrentDay,
-    taskIsCurrentDayAndIsRepeat,
-} from "../utilities/calendar_utilities";
+import {dayMonthIsToday, taskIsCurrentDay, taskIsCurrentDayAndIsRepeat,} from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function CalendarMonth() {
     const [dateSelected, setDateSelected] = useState(new Date());
     const {tasks} = useTaskManagerContext();
+    const {colorPallet} = useColorSchemeContext()
 
     return <div>
         <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
-        <Section>
+        <Section customStyle={colorPallet}>
             <DayOrderBar dayNames={dayNames}/>
-            <MonthGrid dateSelected={dateSelected} tasks={tasks}/>
+            <MonthGrid dateSelected={dateSelected} tasks={tasks} customStyle={colorPallet}/>
         </Section>
     </div>
 }
@@ -57,7 +54,7 @@ function DayName(props) {
 }
 
 function MonthGrid(props) {
-    const {dateSelected, tasks} = props;
+    const {dateSelected, tasks, customStyle} = props;
     const start = startOfMonth(dateSelected);
     const end = endOfMonth(dateSelected)
     const dayCount = getDaysInMonth(start);
@@ -69,7 +66,7 @@ function MonthGrid(props) {
     //add empty days
     if (count !== 1) {
         for (let i = 0; i < count - 1; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={colorPallet.monthDayElementEmpty}></DayElement>]
+            elements = [...elements, <DayElement key={keyCount} style={customStyle.monthDayElementEmpty}></DayElement>]
             keyCount++;
         }
     }
@@ -78,8 +75,8 @@ function MonthGrid(props) {
         elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day}>
             {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
                 .map((task, index) =>
-                    <TaskNote key={keyCount * index * 100} task={task}>
-                        <div className={"rounded-2"} style={colorPallet.monthTaskInfo}>
+                    <TaskNote key={keyCount * index * 100} customStyle={customStyle} task={task}>
+                        <div className={"rounded-2"} style={customStyle.monthTaskInfo}>
                             <p>
                                 {task.title}
                             </p>
@@ -98,7 +95,7 @@ function MonthGrid(props) {
     //add empty days
     if (lastDayOfMonth(dateSelected).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
         for (let i = 0; i < 7 - dayNameNumbers[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={colorPallet.monthDayElementEmpty}></DayElement>]
+            elements = [...elements, <DayElement key={keyCount} style={customStyle.monthDayElementEmpty}></DayElement>]
             keyCount++;
         }
     }
