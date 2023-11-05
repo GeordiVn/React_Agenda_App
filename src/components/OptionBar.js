@@ -1,6 +1,8 @@
 import {Row} from "react-bootstrap";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function OptionBar(props) {
     const {children} = props;
-    return <Row style={{backgroundColor:'#B2533E',padding:'10px',borderTopLeftRadius:'10px',borderTopRightRadius:'10px', marginTop:'20px'}} className={'g-0'}>{children}</Row>
+    const {colorPallet} = useColorSchemeContext()
+    return <Row style={colorPallet.optionBar} className={'g-0'}>{children}</Row>
 }

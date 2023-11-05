@@ -10,30 +10,30 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function TaskNote(props) {
-    const {task, tasks, children} = props
+    const {task, tasks, children,style} = props
     const [open, setIsOpen] = useState(false);
     return <a href={"#"} onClick={(event) => {
         event.preventDefault();
         setIsOpen(true);
     }}>
         {children}
-        <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen}/>
+        <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen} style={style}/>
     </a>
 }
 
 function TaskPopUp(props) {
-    const {task, tasks, open, onOpenChanged} = props;
+    const {task, tasks, open, onOpenChanged , style} = props;
     const {colorPallet} = useColorSchemeContext();
     return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle} overlayStyle={colorPallet.taskNote.overlayStyle}
                   contentStyle={colorPallet.taskNote.contentStyle}
-                  children={task ? <TaskPopUpData task={task}/> : tasks.map(task => <TaskPopUpData key={task.id}
-                                                                                                   task={task}/>)}/>
+                  children={task ? <TaskPopUpData task={task} style={style}/> : tasks.map(task => <TaskPopUpData key={task.id}
+                                                                                                   task={task} style={style}/>)}/>
 }
 
 function TaskPopUpData(props) {
     const {setTask, setShow, setTitle} = useTaskManagerContext()
-    const {task} = props;
-    return <div className={"rounded-2 m-2 p-2"} style={{backgroundColor: '#FCE09B'}}>
+    const {task,style} = props;
+    return <div className={"rounded-2 m-2 p-2"} style={style.taskNoteBackGround}>
         <Row>
             <Col xs={10}>
                 <TaskData title={"Task: "} data={task.title}/>

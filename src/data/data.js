@@ -23,13 +23,77 @@ export const COLOR_SCHEME = {
                 color: 'white',
                 marginTop: '1.5rem'
             }
+        },
+        body: {color: '#186F65'},
+        selectionBar: {
+            backgroundColor: '#B2533E',
+            borderBottomLeftRadius: '10px',
+            borderBottomRightRadius: '10px',
+            padding: '10px'
+        },
+        optionBar: {
+            backgroundColor: '#B2533E',
+            padding: '10px',
+            borderTopLeftRadius: '10px',
+            borderTopRightRadius: '10px',
+            marginTop: '20px'
+        },
+        buttonCustom: {
+            backgroundColor: '#FCE09B',
+            marginRight: '1.5rem',
+            color: 'black',
+            border: 'none',
+            borderRadius: '10px',
+            padding: '5px'
+        }
+        ,
+        dayElementToday: {
+            backgroundColor: '#FCE09B',
+            color: 'white',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px',
+            overflowY: 'scroll'
+        },
+        dayElementNormal: {
+
+            backgroundColor: '#FCE09B',
+            color: 'black',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px',
+            overflowY: 'scroll'
+        },
+        monthDayElementEmpty: {
+            backgroundColor: '#d1c7b0',
+            color: 'black',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px'
+        },
+        monthTaskInfo: {
+            backgroundColor: '#B5CB99'
+        }
+        ,
+        dayElementMarkToday: {
+            backgroundColor: '#B2533E'
+        },
+        monthColumnStyle: {
+            backgroundColor: '#FCE09B'
+        },
+        dayForMonth:{
+            backgroundColor: '#B5CB99'
+        },
+        taskNoteBackGround:{
+            backgroundColor: '#FCE09B'
         }
     },
-
-
     dark: {
         taskNote: {
-            contentStyle: {background: '#B5CB99', borderRadius: '10px'},
+            contentStyle: {background: '#8ffd02', borderRadius: '10px'},
             overlayStyle: {background: 'rgba(223,229,229,0.29)'},
             arrowStyle: {color: '#000'}
         },
@@ -40,6 +104,72 @@ export const COLOR_SCHEME = {
                 color: 'white',
                 marginTop: '1.5rem'
             }
+
+        },
+        body: {color: '#e8dedb'},
+        selectionBar: {
+            backgroundColor: '#78b942',
+            borderBottomLeftRadius: '10px',
+            borderBottomRightRadius: '10px',
+            padding: '10px'
+        },
+        optionBar: {
+            backgroundColor: '#3e51b2',
+            padding: '10px',
+            borderTopLeftRadius: '10px',
+            borderTopRightRadius: '10px',
+            marginTop: '20px'
+        },
+        buttonCustom: {
+            backgroundColor: '#fc9bc0',
+            marginRight: '1.5rem',
+            color: 'black',
+            border: 'none',
+            borderRadius: '10px',
+            padding: '5px'
+        }
+        ,
+        dayElementToday: {
+            backgroundColor: 'rgba(246,177,6,0.91)',
+            color: 'white',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px',
+            overflowY: 'scroll'
+        },
+        dayElementNormal: {
+            backgroundColor: 'rgba(155,174,252,0.89)',
+            color: 'black',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px',
+            overflowY: 'scroll'
+        },
+        monthDayElementEmpty: {
+            backgroundColor: '#d1b0b0',
+            color: 'black',
+            borderRadius: '10px',
+            marginBottom: '5px',
+            marginRight: '5px',
+            height: '150px'
+        },
+        monthTaskInfo: {
+            backgroundColor: '#99c4cb'
+        },
+        dayElementMarkToday: {
+            backgroundColor: '#65b23e'
+        },
+        monthColumnStyle: {
+            backgroundColor: '#f1ad05'
+        },
+        dayForMonth:{
+            backgroundColor: '#8ffd03'
+        },
+        taskNoteBackGround:{
+            backgroundColor: '#443b21'
         }
     }
+
 }

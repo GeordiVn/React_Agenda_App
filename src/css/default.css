@@ -1,6 +1,9 @@
+:root{
+    --bodyColor: #186F65;
+}
 body
 {
-    background-color: #186F65;
+    background-color: var(--bodyColor);
 }
 
 a

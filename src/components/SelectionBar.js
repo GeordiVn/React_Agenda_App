@@ -1,11 +1,9 @@
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+
 export function SelectionBar(props) {
     const {children} = props;
-    return <div style={{
-        backgroundColor: '#B2533E',
-        borderBottomLeftRadius: '10px',
-        borderBottomRightRadius: '10px',
-        padding: '10px'
-    }}>
+    const {colorPallet} = useColorSchemeContext();
+    return <div style={colorPallet.selectionBar}>
         {children}
     </div>
 }

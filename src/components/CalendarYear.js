@@ -7,16 +7,19 @@ import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import {taskIsCurrentDay, taskIsCurrentDayAndIsRepeat} from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function CalendarYear() {
     const {tasks} = useTaskManagerContext();
     const [dateSelected, setDateSelected] = useState(new Date(new Date().getFullYear(), 0, 1));
+    const {colorPallet} = useColorSchemeContext();
     return <div>
         <YearSelector dateSelected={dateSelected} onDateSelectedChanged={setDateSelected}/>
         <Section>
             {MONTHS_IN_YEAR.map((month, index) => <MonthColumn key={month.number}
                                                                tasks={tasks}
                                                                month={month}
+                                                               style={colorPallet}
                                                                dateSelected={dateSelected.setMonth(month.number)}/>)}
         </Section>
     </div>
@@ -33,20 +36,20 @@ function YearSelector(props) {
 }
 
 function MonthColumn(props) {
-    const {dateSelected, tasks, month} = props;
+    const {dateSelected, tasks, month, style} = props;
     return <Col xs={4} md={3} lg={2} className={"p-2"}>
-        <div className={"rounded-2 mb-3 p-2 text-black"} style={{backgroundColor: '#FCE09B'}}>
+        <div className={"rounded-2 mb-3 p-2 text-black"} style={style.monthColumnStyle}>
             <h6 className={"text-center"}>{month.month}</h6>
-            {generateDaysForMonth(dateSelected, tasks, month)}
+            <DaysForMonth dateSelected={dateSelected} tasks={tasks} style={style}/>
         </div>
     </Col>
 }
 
 function DayForMonth(props) {
-    const {title, tasks, today} = props;
+    const {title, tasks,style} = props;
     return <div>
-        {!tasks.length > 0 ? <strong>{title}</strong> : <TaskNote tasks={tasks}>
-            <div className={"my-1"} style={{backgroundColor: '#B5CB99'}}>
+        {!tasks.length > 0 ? <strong>{title}</strong> : <TaskNote tasks={tasks} style={style}>
+            <div className={"my-1"} style={style.dayForMonth}>
                 <strong className={"text-black"}>{title}<span
                     className={"ms-3 text-white"}>{tasks.length < 2 ? tasks.length + " Item" : tasks.length + " Items"}</span></strong>
             </div>
@@ -56,15 +59,17 @@ function DayForMonth(props) {
 
 }
 
-function generateDaysForMonth(dateSelected, tasks, month) {
-    console.log(new Date(dateSelected).toLocaleDateString("nl-BE"));
+function DaysForMonth(props) {
+    const {dateSelected, tasks,style} = props;
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
     for (let day = 1; day < daysInMonth + 1; day++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day * dateSelected.getMonth} title={day}
+        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day * dateSelected.getMonth} title={day} style={style}
                                                             tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
     }
-    return daysMonthArray;
+    return <div>
+        {daysMonthArray}
+    </div>;
 }
 
 

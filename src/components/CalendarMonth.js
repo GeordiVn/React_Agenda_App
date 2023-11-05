@@ -14,6 +14,7 @@ import {
     taskIsCurrentDayAndIsRepeat,
 } from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 
 export function CalendarMonth() {
     const [dateSelected, setDateSelected] = useState(new Date());
@@ -60,7 +61,7 @@ function MonthGrid(props) {
     const start = startOfMonth(dateSelected);
     const end = endOfMonth(dateSelected)
     const dayCount = getDaysInMonth(start);
-
+    const {colorPallet} = useColorSchemeContext();
     let elements = [];
     let count = dayNameNumbers[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
     let keyCount = 0;
@@ -68,14 +69,7 @@ function MonthGrid(props) {
     //add empty days
     if (count !== 1) {
         for (let i = 0; i < count - 1; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={{
-                backgroundColor: '#d1c7b0',
-                color: 'black',
-                borderRadius: '10px',
-                marginBottom: '5px',
-                marginRight: '5px',
-                height: '150px'
-            }}></DayElement>]
+            elements = [...elements, <DayElement key={keyCount} style={colorPallet.monthDayElementEmpty}></DayElement>]
             keyCount++;
         }
     }
@@ -84,8 +78,8 @@ function MonthGrid(props) {
         elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day}>
             {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
                 .map((task, index) =>
-                    <TaskNote key={keyCount * index*100} task={task}>
-                        <div className={"rounded-2"} style={{backgroundColor: '#B5CB99'}}>
+                    <TaskNote key={keyCount * index * 100} task={task}>
+                        <div className={"rounded-2"} style={colorPallet.monthTaskInfo}>
                             <p>
                                 {task.title}
                             </p>
@@ -104,14 +98,7 @@ function MonthGrid(props) {
     //add empty days
     if (lastDayOfMonth(dateSelected).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
         for (let i = 0; i < 7 - dayNameNumbers[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={{
-                backgroundColor: '#d1c7b0',
-                color: 'black',
-                borderRadius: '10px',
-                marginBottom: '5px',
-                marginRight: '5px',
-                height: '150px'
-            }}></DayElement>]
+            elements = [...elements, <DayElement key={keyCount} style={colorPallet.monthDayElementEmpty}></DayElement>]
             keyCount++;
         }
     }
