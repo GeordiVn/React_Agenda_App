@@ -7,7 +7,7 @@ const ColorSchemeContext = createContext();
 
 export function ColorSchemeProvider(props) {
     const [colorScheme, setColorScheme] = useLocalStorage("defaultColorScheme", 0);
-    const [colorPallet, setColorPallet] = useState(colorScheme === 0 ? COLOR_SCHEME.light : COLOR_SCHEME.dark);
+    const [colorPallet, setColorPallet] = useState(COLOR_SCHEME[colorScheme]);
 
     const setBodyColor = useCallback(({color}) => {
         document.documentElement.style.setProperty('--bodyColor', color)
@@ -19,8 +19,8 @@ export function ColorSchemeProvider(props) {
 
     const changeColorPallet = useCallback((colorScheme) => {
         setColorScheme(colorScheme);
-        setBodyColor(colorScheme === 0 ? COLOR_SCHEME.light.body : COLOR_SCHEME.dark.body);
-        setColorPallet(colorScheme === 0 ? COLOR_SCHEME.light : COLOR_SCHEME.dark)
+        setBodyColor( COLOR_SCHEME[colorScheme].body);
+        setColorPallet(COLOR_SCHEME[colorScheme])
 
     }, [setBodyColor,setColorScheme]);
 
