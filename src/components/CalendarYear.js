@@ -39,7 +39,7 @@ function YearSelector(props) {
 function MonthColumn(props) {
     const {dateSelected, tasks, month, customStyle} = props;
     return <Col xs={4} md={3} lg={2} className={"p-2"}>
-        <div className={"rounded-2 mb-3 p-2 text-black"} style={customStyle.monthColumnStyle}>
+        <div className={"rounded-2 mb-3 p-2"} style={customStyle.monthColumnStyle}>
             <h6 className={"text-center"}>{month.month}</h6>
             <DaysForMonth dateSelected={dateSelected} tasks={tasks} customStyle={customStyle}/>
         </div>
@@ -51,7 +51,7 @@ function DayForMonth(props) {
     return <div>
         {!tasks.length > 0 ? <strong>{title}</strong> : <TaskNote tasks={tasks} customStyle={customStyle}>
             <div className={"my-1"} style={customStyle.dayForMonth}>
-                <strong className={"text-black"}>{title}<span
+                <strong>{title}<span
                     className={"ms-3 text-white"}>{tasks.length < 2 ? tasks.length + " Item" : tasks.length + " Items"}</span></strong>
             </div>
         </TaskNote>}

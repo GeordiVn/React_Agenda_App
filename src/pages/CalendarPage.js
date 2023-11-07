@@ -40,7 +40,8 @@ export function CalendarPage() {
                     }}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <Form.Select defaultValue={Number(colorScheme)} onChange={e => changeColorPallet(Number(e.target.value))}>
+                    <Form.Select defaultValue={Number(colorScheme)}
+                                 onChange={e => changeColorPallet(Number(e.target.value))}>
                         <option value={0}>Light mode</option>
                         <option value={1}>Dark mode</option>
                         <option value={2}>Discord mode</option>
