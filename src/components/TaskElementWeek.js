@@ -2,21 +2,18 @@ import {Col, Row} from "react-bootstrap";
 import {
     dBTimeStampToLocaleDateString, dbTimeStampToTime
 } from "../utilities/db_time_date_utilities";
-import {DeleteButton} from "./DeleteButton";
 import PropTypes from "prop-types";
 import {Section} from "./Section";
 import {TaskData} from "./TaskData";
-import {EditButton} from "./EditButton";
 import {IconButton} from "./IconButton";
 import {BiEdit} from "react-icons/bi";
 import {TiDelete} from "react-icons/ti";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useMessageContext} from "../contexts/messageContext";
 
 export function TaskElementWeek(props) {
     const {task, customStyle} = props
-    const {setShow, setTask, setTitle, deleteTask} = useTaskManagerContext();
-    const {notifyDelete} = useMessageContext();
+    const {setShow, setTask, setTitle, notifyDelete} = useTaskManagerContext();
+
     return <Section customStyle={customStyle}>
         <Row className={'g-0'}>
             <Col xs={"10"}>

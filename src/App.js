@@ -4,7 +4,6 @@ import {CalendarPage} from "./pages/CalendarPage";
 import './css/default.css'
 import {TaskManagerProvider} from "./contexts/taskManagerContext";
 import {ColorSchemeProvider} from "./contexts/colorSchemeContext";
-import {MessageProvider} from "./contexts/messageContext";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -19,9 +18,7 @@ function App() {
     return (
         <ColorSchemeProvider>
             <TaskManagerProvider>
-                <MessageProvider>
                     <ProvidedApp/>
-                </MessageProvider>
             </TaskManagerProvider>
         </ColorSchemeProvider>
     );

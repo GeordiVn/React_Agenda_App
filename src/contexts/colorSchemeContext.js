@@ -1,6 +1,7 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {useLocalStorage} from "@uidotdev/usehooks";
 import {COLOR_SCHEME} from "../data/data";
+import {ToastContainer} from "react-toastify";
 
 const ColorSchemeContext = createContext();
 

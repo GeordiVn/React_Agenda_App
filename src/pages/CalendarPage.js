@@ -1,7 +1,7 @@
 import {Col, Container, Row, Form} from "react-bootstrap";
 import {OptionBar} from "../components/OptionBar";
 import {ButtonCustom} from "../components/ButtonCustom.js";
-import {useState} from "react";
+import React, {useState} from "react";
 import {CalendarWeek} from "../components/CalendarWeek";
 import {CalendarMonth} from "../components/CalendarMonth";
 import {CalendarYear} from "../components/CalendarYear";
@@ -9,7 +9,6 @@ import {TaskManager} from "../components/TaskManager";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {ToastContainer} from "react-toastify";
-
 
 export function CalendarPage() {
     const {setShow, setTitle, newTask} = useTaskManagerContext()
@@ -46,12 +45,10 @@ export function CalendarPage() {
                         <option value={1}>Dark mode</option>
                         <option value={2}>Discord mode</option>
                     </Form.Select>
-                    <ToastContainer/>
                 </Col>
             </Row>
-
+            <ToastContainer/>
         </OptionBar>
-
         <TaskManager/>
         {layout}
     </Container>

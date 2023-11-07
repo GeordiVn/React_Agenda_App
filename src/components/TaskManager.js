@@ -1,14 +1,11 @@
 import {Button, Form, Modal, ModalBody, ModalHeader} from "react-bootstrap";
-import {useState} from "react";
 import {ButtonCustom} from "./ButtonCustom";
-import {getUnixTime} from "date-fns"
-import {addDoc} from "firebase/firestore";
-import {getDay, getMonth, getTime, getYear} from "date-fns";
-import {dbTimeStampToTime} from "../utilities/db_time_date_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+
 
 export function TaskManager() {
     const {title, editTask, storeTaskChanges, saveTask, show, setShow} = useTaskManagerContext();
+
 
     return (<Modal show={!!show} onHide={() => setShow(false)}>
         <ModalHeader>
@@ -27,7 +24,6 @@ export function TaskManager() {
                     <option value={1}>Gemiddeld</option>
                     <option value={2}>Hoog</option>
                 </Form.Select>
-
 
                 <Form.Label>Datum</Form.Label>
                 <Form.Control required={true} type={"date"} value={editTask.date.date}

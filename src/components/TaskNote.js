@@ -9,7 +9,7 @@ import {Col, Row} from "react-bootstrap";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {TiDelete} from "react-icons/ti";
-import {useMessageContext} from "../contexts/messageContext";
+
 
 export function TaskNote(props) {
     const {task, tasks, children, customStyle} = props
@@ -35,8 +35,7 @@ function TaskPopUp(props) {
 }
 
 function TaskPopUpData(props) {
-    const {setTask, setShow, setTitle, deleteTask} = useTaskManagerContext()
-    const {notifyDelete} = useMessageContext();
+    const {setTask, setShow, setTitle, notifyDelete} = useTaskManagerContext()
     const {task, customStyle} = props;
     return <div className={"rounded-2 m-2 p-2"} style={customStyle.taskNoteBackGround}>
         <Row>

@@ -32,11 +32,11 @@ export const COLOR_SCHEME = {
             overlayStyle: {background: 'rgba(223,229,229,0.29)'},
             arrowStyle: {color: '#000'}
         },
-        textBlack:{
-            color:'black'
+        textBlack: {
+            color: 'black'
         },
-        textWhite:{
-            color:'white'
+        textWhite: {
+            color: 'white'
         },
         section: {
             style: {
@@ -105,18 +105,22 @@ export const COLOR_SCHEME = {
         },
         monthColumnStyle: {
             backgroundColor: '#FCE09B',
-            color:'black'
+            color: 'black'
         },
         dayForMonth: {
             backgroundColor: '#B5CB99'
         },
         taskNoteBackGround: {
             backgroundColor: '#FCE09B'
+        },
+        toastStyle: {
+            backgroundColor: 'white',
+            color: 'black'
         }
     },
     1: {
         taskNote: {
-            contentStyle: {background: '#2C3639', borderRadius: '10px',color:'white'},
+            contentStyle: {background: '#2C3639', borderRadius: '10px', color: 'white'},
             overlayStyle: {background: 'rgba(223,229,229,0.29)'},
             arrowStyle: {color: '#000'}
         },
@@ -184,7 +188,7 @@ export const COLOR_SCHEME = {
         ,
         dayElementMarkToday: {
             backgroundColor: '#DCD7C9',
-            color:'black'
+            color: 'black'
         },
         monthColumnStyle: {
             backgroundColor: '#A27B5C'
@@ -194,11 +198,15 @@ export const COLOR_SCHEME = {
         },
         taskNoteBackGround: {
             backgroundColor: '#3F4E4F'
+        },
+        toastStyle: {
+            backgroundColor: 'black',
+            color: 'white'
         }
     },
     2: {
         taskNote: {
-            contentStyle: {background: '#1e2124', borderRadius: '10px',color:'white'},
+            contentStyle: {background: '#1e2124', borderRadius: '10px', color: 'white'},
             overlayStyle: {background: 'rgba(223,229,229,0.29)'},
             arrowStyle: {color: '#000'}
         },
@@ -262,7 +270,7 @@ export const COLOR_SCHEME = {
         },
         monthTaskInfo: {
             backgroundColor: '#7289da',
-            color:'white'
+            color: 'white'
         }
         ,
         dayElementMarkToday: {
@@ -270,7 +278,7 @@ export const COLOR_SCHEME = {
         },
         monthColumnStyle: {
             backgroundColor: '#424549',
-            color:'white'
+            color: 'white'
         },
         dayForMonth: {
             backgroundColor: '#7289da'
@@ -279,6 +287,10 @@ export const COLOR_SCHEME = {
         taskNoteBackGround: {
             backgroundColor: '#424549'
         },
+        toastStyle: {
+            backgroundColor: 'black',
+            color: 'white'
+        }
     }
 
 
