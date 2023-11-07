@@ -8,6 +8,7 @@ import {BiEdit} from "react-icons/bi";
 import {Col, Row} from "react-bootstrap";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {TiDelete} from "react-icons/ti";
 
 export function TaskNote(props) {
     const {task, tasks, children,customStyle} = props
@@ -31,7 +32,7 @@ function TaskPopUp(props) {
 }
 
 function TaskPopUpData(props) {
-    const {setTask, setShow, setTitle} = useTaskManagerContext()
+    const {setTask, setShow, setTitle,deleteTask} = useTaskManagerContext()
     const {task,customStyle} = props;
     return <div className={"rounded-2 m-2 p-2"} style={customStyle.taskNoteBackGround}>
         <Row>
@@ -45,6 +46,11 @@ function TaskPopUpData(props) {
                     setTask(task);
                 }}>
                     <BiEdit style={{width: '35px', height: '35px'}}/>
+                </IconButton>
+                <IconButton onClick={() => {
+                   deleteTask(task);
+                }}>
+                    <TiDelete style={{width: '35px', height: '35px'}}/>
                 </IconButton>
             </Col>
         </Row>

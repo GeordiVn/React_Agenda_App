@@ -14,7 +14,7 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 
 export function TaskElementWeek(props) {
     const {task,customStyle} = props
-    const {setShow, setTask,setTitle} = useTaskManagerContext();
+    const {setShow, setTask,setTitle,deleteTask} = useTaskManagerContext();
 
     return <Section customStyle={customStyle}>
         <Row className={'g-0'}>
@@ -29,8 +29,7 @@ export function TaskElementWeek(props) {
                     <BiEdit style={{width: '35px', height: '35px'}}/>
                 </IconButton>
                 <IconButton onClick={() => {
-                    setTask(task);
-                    setShow(true);
+                    deleteTask(task)
                 }}>
                     <TiDelete style={{width: '35px', height: '35px'}}/>
                 </IconButton>

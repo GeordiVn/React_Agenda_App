@@ -116,7 +116,7 @@ export const COLOR_SCHEME = {
     },
     1: {
         taskNote: {
-            contentStyle: {background: '#2C3639', borderRadius: '10px'},
+            contentStyle: {background: '#2C3639', borderRadius: '10px',color:'white'},
             overlayStyle: {background: 'rgba(223,229,229,0.29)'},
             arrowStyle: {color: '#000'}
         },
