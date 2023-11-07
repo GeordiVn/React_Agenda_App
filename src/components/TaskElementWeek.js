@@ -11,11 +11,12 @@ import {IconButton} from "./IconButton";
 import {BiEdit} from "react-icons/bi";
 import {TiDelete} from "react-icons/ti";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useMessageContext} from "../contexts/messageContext";
 
 export function TaskElementWeek(props) {
-    const {task,customStyle} = props
-    const {setShow, setTask,setTitle,deleteTask} = useTaskManagerContext();
-
+    const {task, customStyle} = props
+    const {setShow, setTask, setTitle, deleteTask} = useTaskManagerContext();
+    const {notifyDelete} = useMessageContext();
     return <Section customStyle={customStyle}>
         <Row className={'g-0'}>
             <Col xs={"10"}>
@@ -23,13 +24,13 @@ export function TaskElementWeek(props) {
             </Col>
             <Col className={'text-end'}>
                 <IconButton onClick={() => {
-                    setTask(task,setTitle("Wijzig"));
+                    setTask(task, setTitle("Wijzig"));
                     setShow(true);
                 }}>
                     <BiEdit style={{width: '35px', height: '35px'}}/>
                 </IconButton>
                 <IconButton onClick={() => {
-                    deleteTask(task)
+                    notifyDelete(task)
                 }}>
                     <TiDelete style={{width: '35px', height: '35px'}}/>
                 </IconButton>

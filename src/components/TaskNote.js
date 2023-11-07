@@ -9,9 +9,10 @@ import {Col, Row} from "react-bootstrap";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {TiDelete} from "react-icons/ti";
+import {useMessageContext} from "../contexts/messageContext";
 
 export function TaskNote(props) {
-    const {task, tasks, children,customStyle} = props
+    const {task, tasks, children, customStyle} = props
     const [open, setIsOpen] = useState(false);
     return <a href={"#"} onClick={(event) => {
         event.preventDefault();
@@ -23,17 +24,20 @@ export function TaskNote(props) {
 }
 
 function TaskPopUp(props) {
-    const {task, tasks, open, onOpenChanged , customStyle} = props;
+    const {task, tasks, open, onOpenChanged, customStyle} = props;
     const {colorPallet} = useColorSchemeContext();
-    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle} overlayStyle={colorPallet.taskNote.overlayStyle}
+    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle}
+                  overlayStyle={colorPallet.taskNote.overlayStyle}
                   contentStyle={colorPallet.taskNote.contentStyle}
-                  children={task ? <TaskPopUpData task={task} customStyle={customStyle}/> : tasks.map(task => <TaskPopUpData key={task.id}
-                                                                                                   task={task} customStyle={customStyle}/>)}/>
+                  children={task ? <TaskPopUpData task={task} customStyle={customStyle}/> : tasks.map(task =>
+                      <TaskPopUpData key={task.id}
+                                     task={task} customStyle={customStyle}/>)}/>
 }
 
 function TaskPopUpData(props) {
-    const {setTask, setShow, setTitle,deleteTask} = useTaskManagerContext()
-    const {task,customStyle} = props;
+    const {setTask, setShow, setTitle, deleteTask} = useTaskManagerContext()
+    const {notifyDelete} = useMessageContext();
+    const {task, customStyle} = props;
     return <div className={"rounded-2 m-2 p-2"} style={customStyle.taskNoteBackGround}>
         <Row>
             <Col xs={10}>
@@ -48,7 +52,7 @@ function TaskPopUpData(props) {
                     <BiEdit style={{width: '35px', height: '35px'}}/>
                 </IconButton>
                 <IconButton onClick={() => {
-                   deleteTask(task);
+                    notifyDelete(task);
                 }}>
                     <TiDelete style={{width: '35px', height: '35px'}}/>
                 </IconButton>

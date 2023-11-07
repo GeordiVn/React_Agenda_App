@@ -8,7 +8,7 @@ import {CalendarYear} from "../components/CalendarYear";
 import {TaskManager} from "../components/TaskManager";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
-import {COLOR_SCHEME} from "../data/data";
+import {ToastContainer} from "react-toastify";
 
 
 export function CalendarPage() {
@@ -46,9 +46,12 @@ export function CalendarPage() {
                         <option value={1}>Dark mode</option>
                         <option value={2}>Discord mode</option>
                     </Form.Select>
+                    <ToastContainer/>
                 </Col>
             </Row>
+
         </OptionBar>
+
         <TaskManager/>
         {layout}
     </Container>
