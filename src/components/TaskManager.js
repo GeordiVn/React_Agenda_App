@@ -35,8 +35,6 @@ export function TaskManager() {
                               onChange={(e) => storeTaskChanges({
                                   ...editTask, date: {date: editTask.date.date, time: e.target.value}
                               })}></Form.Control>
-
-
                 <Form.Label>Omschrijving</Form.Label>
                 <Form.Control as={"textarea"} rows={3} value={editTask.description}
                               onChange={(e) => storeTaskChanges({...editTask, description: e.target.value})}/>

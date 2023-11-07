@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 import {Button, Col, Row} from "react-bootstrap";
 import {useColorSchemeContext} from "./colorSchemeContext";
 
+
 const TaskManagerContext = createContext();
 
 const taskConverter = {
@@ -28,7 +29,7 @@ const taskConverter = {
 export function TaskManagerProvider(props) {
     const collectionRef = useMemo(() => collection(firestoreDB, 'tasks').withConverter(taskConverter), []);
     const queryRef = useMemo(() => query(collectionRef), [collectionRef]);
-    const [tasks, loading] = useCollectionData(queryRef);
+    const [tasks, loading,error] = useCollectionData(queryRef);
     const [editTask, setEditTask] = useState(NEW_TASK);
     const [title, setTitle] = useState("");
     const [show, setShow] = useState(false);
@@ -49,7 +50,12 @@ export function TaskManagerProvider(props) {
         })
     }, [])
     const deleteTask = useCallback(async (task) => {
-        await deleteDoc(task.ref).then(() => toast("Task verwijderd!"));
+        try {
+            await deleteDoc(task.ref).then(() => toast("Task verwijderd!"));
+        } catch {
+            toast.warning("Er ging iets mis bij het verwijderen!");
+        }
+
     }, [])
     const notifyDelete = useCallback((task) => {
         toast.warn(
@@ -77,9 +83,8 @@ export function TaskManagerProvider(props) {
             task.ref ?
                 await updateDoc(task.ref, taskForSave).then(() => toast.info("Wijzigingen opgeslagen!")) :
                 await addDoc(collectionRef, taskForSave).then(() => toast.info("Nieuwe task toegevoegd!"));
-        } catch (e) {
-            console.log(e);
-            console.log("Er is iets mis gegaan tijdens oplagen nieuwe task");
+        } catch {
+            toast.warning("Er ging iets mis bij het opslagen!");
         }
     }, [collectionRef])
 
@@ -104,8 +109,6 @@ export function TaskManagerProvider(props) {
     </TaskManagerContext.Provider>
 }
 
-export const useTaskManagerContext = () => useContext(TaskManagerContext);
-
 Date.prototype.toDateInputValue = (function () {
     const local = new Date(this);
     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -119,5 +122,4 @@ const NEW_TASK = {
     repeat: false,
     location: {_long: 0, _lat: 0}
 }
-
-
+export const useTaskManagerContext = () => useContext(TaskManagerContext);
