@@ -6,7 +6,6 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 export function TaskManager() {
     const {title, editTask, storeTaskChanges, saveTask, show, setShow} = useTaskManagerContext();
 
-
     return (<Modal show={!!show} onHide={() => setShow(false)}>
         <ModalHeader>
             <h5>{title}</h5>

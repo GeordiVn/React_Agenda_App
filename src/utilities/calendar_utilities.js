@@ -1,4 +1,4 @@
-import {addDays, getDate, getDay} from "date-fns";
+import {getDate} from "date-fns";
 
 export function taskIsCurrentDay(task, day, dateSelected) {
     return (task.date.toDate().getMonth() ===

@@ -61,7 +61,6 @@ function MonthGrid(props) {
     const start = startOfMonth(dateSelected);
     const end = endOfMonth(dateSelected)
     const dayCount = getDaysInMonth(start);
-    const {colorPallet} = useColorSchemeContext();
     let elements = [];
     let count = dayNameNumbers[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
     let keyCount = 0;
