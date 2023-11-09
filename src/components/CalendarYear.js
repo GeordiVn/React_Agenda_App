@@ -33,7 +33,9 @@ function YearSelector(props) {
         <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, -1))} title={"Vorig jaar"}/>
         <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, 1))} title={"Volgend jaar"}/>
         <ButtonCustom onClick={() => onDateSelectedChanged(new Date())} title={"Dit jaar"}/>
-        <p style={{color: 'white'}}>{dateSelected.toLocaleDateString('nl-BE')}</p>
+        <div className={"text-center"}>
+            <h5 style={{color: 'white'}}>{dateSelected.getFullYear()}</h5>
+        </div>
     </SelectionBar>
 }
 

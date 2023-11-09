@@ -8,20 +8,34 @@ export const dayNumberNames = {
 export const priorityColor = {
     0: 'white', 1: 'orange', 2: 'red'
 }
+export const MONTH_NUMBER = {
+    0: "Januari",
+    1: "Februari",
+    2: "Maart",
+    3: "April",
+    4: "Mei",
+    5: "Juni",
+    6: "Juli",
+    7: "Augustus",
+    8: "September",
+    9: "Oktober",
+    10: "November",
+    11: "December",
 
+}
 export const MONTHS_IN_YEAR = [
-    {number: 0, month: "januari"},
-    {number: 1, month: "februari"},
-    {number: 2, month: "maart"},
-    {number: 3, month: "april"},
-    {number: 4, month: "mei"},
-    {number: 5, month: "juni"},
-    {number: 6, month: "juli"},
-    {number: 7, month: "augustus"},
-    {number: 8, month: "september"},
-    {number: 9, month: "oktober"},
-    {number: 10, month: "november"},
-    {number: 11, month: "december"},
+    {number: 0, month: "Januari"},
+    {number: 1, month: "Februari"},
+    {number: 2, month: "Maart"},
+    {number: 3, month: "April"},
+    {number: 4, month: "Mei"},
+    {number: 5, month: "Juni"},
+    {number: 6, month: "Juli"},
+    {number: 7, month: "Augustus"},
+    {number: 8, month: "September"},
+    {number: 9, month: "Oktober"},
+    {number: 10, month: "November"},
+    {number: 11, month: "December"},
 
 ]
 

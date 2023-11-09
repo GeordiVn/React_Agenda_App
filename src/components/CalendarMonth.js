@@ -7,7 +7,7 @@ import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} fro
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
-import {dayNameNumbers, dayNames} from "../data/data";
+import {dayNameNumbers, dayNames, MONTH_NUMBER} from "../data/data";
 import {dayMonthIsToday, taskIsCurrentDay, taskIsCurrentDayAndIsRepeat,} from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
@@ -32,10 +32,13 @@ function MonthSelector(props) {
         <ButtonCustom title={'Vorige maand'} onClick={() => onDateChanged(addMonths(dateSelected, -1))}/>
         <ButtonCustom title={'Volgende maand'} onClick={() => onDateChanged(addMonths(dateSelected, 1))}/>
         <ButtonCustom title={'Deze maand'} onClick={() => onDateChanged(new Date())}/>
-        <p style={{color: 'white'}}>{dateSelected.toLocaleDateString('nl-BE')}</p>
+        <div className={"text-center"}>
+            <h5 style={{color: 'white'}}>{MONTH_NUMBER[dateSelected.getMonth()]} {dateSelected.getFullYear()}</h5>
+        </div>
     </SelectionBar>
 
 }
+
 function DayOrderBar(props) {
     const {dayNames} = props;
     return <Col xs={12}>
@@ -102,6 +105,7 @@ function MonthGrid(props) {
     }
     return elements;
 }
+
 MonthSelector.propTypes = {
     dateSelected: PropTypes.instanceOf(Date),
     onDateChanged: PropTypes.func
