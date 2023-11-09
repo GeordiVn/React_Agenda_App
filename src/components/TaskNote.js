@@ -64,6 +64,17 @@ function TaskPopUpData(props) {
     </div>
 }
 
+TaskPopUpData.propTypes = {
+    task: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    }),
+    customStyle: PropTypes.shape({})
+};
+
 TaskNote.propTypes = {
     tasks: PropTypes.array,
     task: PropTypes.shape({
@@ -73,5 +84,9 @@ TaskNote.propTypes = {
         priority: PropTypes.number,
         date: PropTypes.object
     })
-}
+};
+
+TaskPopUp.propTypes = {
+    colorPallet: PropTypes.shape({})
+};
 
