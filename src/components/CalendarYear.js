@@ -65,7 +65,7 @@ MonthColumn.propTypes = {
         number: PropTypes.number,
         month: PropTypes.string
     }),
-    customStyle: PropTypes.object
+    customStyle:PropTypes.shape({})
 };
 
 function DayForMonth(props) {
@@ -82,6 +82,18 @@ function DayForMonth(props) {
 
 }
 
+DayForMonth.protpTypes = {
+    title: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    customStyle:PropTypes.shape({})
+};
+
 function DaysForMonth(props) {
     const {dateSelected, tasks, customStyle} = props;
     const daysInMonth = getDaysInMonth(dateSelected);
@@ -96,4 +108,15 @@ function DaysForMonth(props) {
     </div>;
 }
 
+DaysForMonth.propTypes={
+    dateSelected:PropTypes.instanceOf(Date),
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    customStyle:PropTypes.shape({})
+};
 
