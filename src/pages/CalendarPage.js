@@ -23,7 +23,7 @@ export function CalendarPage() {
     const [layout, setLayout] = useState(LAYOUT_SELECT[lastLayout]);
 
 
-    return <Container fluid={"md"} className={"p-0  g-0"}>
+    return <Container fluid={"md"} className={"p-2  g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
                 <Col xs={"auto"}>

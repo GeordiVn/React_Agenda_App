@@ -72,7 +72,7 @@ export const COLOR_SCHEME = {
             padding: '10px',
             borderTopLeftRadius: '10px',
             borderTopRightRadius: '10px',
-            marginTop: '20px'
+            marginTop: '10px'
         },
         buttonCustom: {
             backgroundColor: '#FCE09B',
@@ -90,7 +90,7 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY:'auto'
         },
         dayElementNormal: {
 
@@ -100,7 +100,8 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY:'auto'
+
         },
         monthDayElementEmpty: {
             backgroundColor: '#d1c7b0',
@@ -111,7 +112,10 @@ export const COLOR_SCHEME = {
             height: '150px'
         },
         monthTaskInfo: {
-            backgroundColor: '#B5CB99'
+            backgroundColor: '#B5CB99',
+            marginLeft:'5px',
+            marginRight:'5px',
+            marginBottom:'5px'
         }
         ,
         dayElementMarkToday: {
@@ -176,7 +180,7 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY: 'auto'
         },
         dayElementNormal: {
 
@@ -186,7 +190,7 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY: 'auto'
         },
         monthDayElementEmpty: {
             backgroundColor: '#755b43',
@@ -197,7 +201,10 @@ export const COLOR_SCHEME = {
             height: '150px'
         },
         monthTaskInfo: {
-            backgroundColor: '#3F4E4F'
+            backgroundColor: '#3F4E4F',
+            marginLeft:'5px',
+            marginRight:'5px',
+            marginBottom:'5px'
         }
         ,
         dayElementMarkToday: {
@@ -262,7 +269,7 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY: 'auto'
         },
         dayElementNormal: {
 
@@ -272,7 +279,7 @@ export const COLOR_SCHEME = {
             marginBottom: '5px',
             marginRight: '5px',
             height: '150px',
-            overflowY: 'scroll'
+            overflowY: 'auto'
         },
         monthDayElementEmpty: {
             backgroundColor: '#1e2124',
@@ -284,7 +291,10 @@ export const COLOR_SCHEME = {
         },
         monthTaskInfo: {
             backgroundColor: '#7289da',
-            color: 'white'
+            color: 'white',
+            marginLeft:'5px',
+            marginRight:'5px',
+            marginBottom:'5px'
         }
         ,
         dayElementMarkToday: {
