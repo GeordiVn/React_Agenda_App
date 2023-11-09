@@ -36,7 +36,6 @@ function MonthSelector(props) {
     </SelectionBar>
 
 }
-
 function DayOrderBar(props) {
     const {dayNames} = props;
     return <Col xs={12}>
@@ -52,6 +51,7 @@ function DayName(props) {
         <p>{dayName}</p>
     </Col>
 }
+
 
 function MonthGrid(props) {
     const {dateSelected, tasks, customStyle} = props;
@@ -72,17 +72,18 @@ function MonthGrid(props) {
     }
     //add current month days
     for (let day = 1; day < dayCount + 1; day++) {
-        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day.toString()}>
-            {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
-                .map((task, index) =>
-                    <TaskNote key={keyCount * index * 100} customStyle={customStyle} task={task}>
-                        <div className={"rounded-2"} style={customStyle.monthTaskInfo}>
-                            <p>
-                                {task.title}
-                            </p>
-                        </div>
-                    </TaskNote>)}
-        </DayElement>];
+        elements = [...elements,
+            <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day.toString()}>
+                {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
+                    .map((task, index) =>
+                        <TaskNote key={keyCount * index * 100} customStyle={customStyle} task={task}>
+                            <div className={"rounded-2"} style={customStyle.monthTaskInfo}>
+                                <p>
+                                    {task.title}
+                                </p>
+                            </div>
+                        </TaskNote>)}
+            </DayElement>];
         keyCount++;
         if (count === 7) {
             elements = [...elements, <Col key={keyCount} xs={12}></Col>]
@@ -101,9 +102,28 @@ function MonthGrid(props) {
     }
     return elements;
 }
+MonthSelector.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
+    onDateChanged: PropTypes.func
+};
 
+DayName.propTypes = {
+    dayName: PropTypes.string
+};
+
+DayOrderBar.propTypes = {
+    dayNames: PropTypes.arrayOf(PropTypes.string)
+};
 
 MonthGrid.propTypes = {
-    tasks: PropTypes.array, dateSelected: PropTypes.instanceOf(Date)
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    dateSelected: PropTypes.instanceOf(Date),
+    customStyle: PropTypes.shape({})
 }
 

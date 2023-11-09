@@ -37,11 +37,6 @@ function YearSelector(props) {
     </SelectionBar>
 }
 
-YearSelector.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    onDateSelectedChanged: PropTypes.func
-};
-
 function MonthColumn(props) {
     const {dateSelected, tasks, month, customStyle} = props;
     return <Col xs={4} md={3} lg={2} className={"p-2"}>
@@ -51,22 +46,6 @@ function MonthColumn(props) {
         </div>
     </Col>
 }
-
-MonthColumn.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
-        priority: PropTypes.number,
-        date: PropTypes.object
-    })),
-    month: PropTypes.shape({
-        number: PropTypes.number,
-        month: PropTypes.string
-    }),
-    customStyle:PropTypes.shape({})
-};
 
 function DayForMonth(props) {
     const {title, tasks, customStyle} = props;
@@ -82,18 +61,6 @@ function DayForMonth(props) {
 
 }
 
-DayForMonth.protpTypes = {
-    title: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
-        priority: PropTypes.number,
-        date: PropTypes.object
-    })),
-    customStyle:PropTypes.shape({})
-};
-
 function DaysForMonth(props) {
     const {dateSelected, tasks, customStyle} = props;
     const daysInMonth = getDaysInMonth(dateSelected);
@@ -108,8 +75,13 @@ function DaysForMonth(props) {
     </div>;
 }
 
-DaysForMonth.propTypes={
-    dateSelected:PropTypes.instanceOf(Date),
+YearSelector.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
+    onDateSelectedChanged: PropTypes.func
+};
+
+MonthColumn.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
     tasks: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
@@ -117,6 +89,34 @@ DaysForMonth.propTypes={
         priority: PropTypes.number,
         date: PropTypes.object
     })),
-    customStyle:PropTypes.shape({})
+    month: PropTypes.shape({
+        number: PropTypes.number,
+        month: PropTypes.string
+    }),
+    customStyle: PropTypes.shape({})
+};
+
+DayForMonth.protpTypes = {
+    title: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    customStyle: PropTypes.shape({})
+};
+
+DaysForMonth.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    customStyle: PropTypes.shape({})
 };
 

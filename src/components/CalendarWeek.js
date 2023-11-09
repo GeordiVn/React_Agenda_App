@@ -19,19 +19,9 @@ export function CalendarWeek() {
         <WeekSelector weekRange={weekRange} onWeekRangeChanged={setWeekRange}/>
         {[...tasks].sort((p1, p2) => p1.date.seconds - p2.date.seconds)
             .filter((p1) => p1.date.toDate() >= weekRange.start && p1.date.toDate() <= weekRange.end)
-            .map((task) => <TaskElementWeek  key={task.id} task={task} customStyle={colorPallet}/>)}
+            .map((task) => <TaskElementWeek key={task.id} task={task} customStyle={colorPallet}/>)}
     </div>
 }
-
-CalendarWeek.propTypes = {
-    task: PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
-        priority: PropTypes.number,
-        date: PropTypes.object
-    })
-};
 
 function WeekSelector(props) {
     const {weekRange, onWeekRangeChanged} = props;
@@ -54,6 +44,16 @@ function WeekSelector(props) {
         <p style={{color: 'white'}}>Van {weekRange.start.toLocaleDateString('nl-BE')} tot {weekRange.end.toLocaleDateString('nl-BE')}</p>
     </SelectionBar>
 }
+
+CalendarWeek.propTypes = {
+    task: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })
+};
 
 WeekSelector.propTypes = {
     weekRange: PropTypes.shape({
