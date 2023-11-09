@@ -43,7 +43,7 @@ export const COLOR_SCHEME = {
     0: {
         taskNote: {
             contentStyle: {background: '#B5CB99', borderRadius: '10px'},
-            overlayStyle: {background: 'rgba(223,229,229,0.29)'},
+            overlayStyle: {background: 'rgba(223,229,229,0.29)',overflowY:'auto'},
             arrowStyle: {color: '#000'}
         },
         textBlack: {
@@ -139,7 +139,7 @@ export const COLOR_SCHEME = {
     1: {
         taskNote: {
             contentStyle: {background: '#2C3639', borderRadius: '10px', color: 'white'},
-            overlayStyle: {background: 'rgba(223,229,229,0.29)'},
+            overlayStyle: {background: 'rgba(223,229,229,0.29)',overflowY:'auto'},
             arrowStyle: {color: '#000'}
         },
         section: {
@@ -228,7 +228,7 @@ export const COLOR_SCHEME = {
     2: {
         taskNote: {
             contentStyle: {background: '#1e2124', borderRadius: '10px', color: 'white'},
-            overlayStyle: {background: 'rgba(223,229,229,0.29)'},
+            overlayStyle: {background: 'rgba(223,229,229,0.29)',overflowY:'auto'},
             arrowStyle: {color: '#000'}
         },
         section: {
