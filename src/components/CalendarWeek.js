@@ -41,7 +41,10 @@ function WeekSelector(props) {
             start: startOfWeek(new Date(), {weekStartsOn: 1},), end: endOfWeek(new Date(), {weekStartsOn: 1})
         })}>
         </ButtonCustom>
-        <p style={{color: 'white'}}>Van {weekRange.start.toLocaleDateString('nl-BE')} tot {weekRange.end.toLocaleDateString('nl-BE')}</p>
+        <div className={"text-center"}>
+            <h5 style={{color: 'white'}}>Van {weekRange.start.toLocaleDateString('nl-BE')} tot {weekRange.end.toLocaleDateString('nl-BE')}</h5>
+        </div>
+
     </SelectionBar>
 }
 
