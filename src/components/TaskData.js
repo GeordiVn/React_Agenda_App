@@ -1,4 +1,3 @@
-import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
 import {priorityColor} from "../data/data";
 

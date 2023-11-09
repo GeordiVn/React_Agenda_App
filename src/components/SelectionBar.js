@@ -1,4 +1,5 @@
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import PropTypes from "prop-types";
 
 export function SelectionBar(props) {
     const {children} = props;
@@ -7,3 +8,7 @@ export function SelectionBar(props) {
         {children}
     </div>
 }
+
+SelectionBar.propTypes = {
+    children: PropTypes.any
+};
