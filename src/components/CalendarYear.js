@@ -9,6 +9,7 @@ import {taskIsCurrentDay, taskIsCurrentDayAndIsRepeat} from "../utilities/calend
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {MONTHS_IN_YEAR} from "../data/data";
+import PropTypes from "prop-types";
 
 export function CalendarYear() {
     const [dateSelected, setDateSelected] = useState(new Date(new Date().getFullYear(), 0, 1));
@@ -21,7 +22,7 @@ export function CalendarYear() {
                                                                tasks={tasks}
                                                                month={month}
                                                                customStyle={colorPallet}
-                                                               dateSelected={dateSelected.setMonth(month.number)}/>)}
+                                                               dateSelected={new Date(dateSelected.setMonth(month.number))}/>)}
         </Section>
     </div>
 }
@@ -36,6 +37,11 @@ function YearSelector(props) {
     </SelectionBar>
 }
 
+YearSelector.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
+    onDateSelectedChanged: PropTypes.func
+};
+
 function MonthColumn(props) {
     const {dateSelected, tasks, month, customStyle} = props;
     return <Col xs={4} md={3} lg={2} className={"p-2"}>
@@ -45,6 +51,22 @@ function MonthColumn(props) {
         </div>
     </Col>
 }
+
+MonthColumn.propTypes = {
+    dateSelected: PropTypes.instanceOf(Date),
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    month: PropTypes.shape({
+        number: PropTypes.number,
+        month: PropTypes.string
+    }),
+    customStyle: PropTypes.object
+};
 
 function DayForMonth(props) {
     const {title, tasks, customStyle} = props;
@@ -65,8 +87,9 @@ function DaysForMonth(props) {
     const daysInMonth = getDaysInMonth(dateSelected);
     let daysMonthArray = [];
     for (let day = 1; day < daysInMonth + 1; day++) {
-        daysMonthArray = [[...daysMonthArray], <DayForMonth key={day * dateSelected.getMonth} title={day} customStyle={customStyle}
-                                                            tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
+        daysMonthArray = [[...daysMonthArray],
+            <DayForMonth key={day * dateSelected.getMonth} title={day} customStyle={customStyle}
+                         tasks={tasks.filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))}/>]
     }
     return <div>
         {daysMonthArray}

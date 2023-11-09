@@ -72,7 +72,7 @@ function MonthGrid(props) {
     }
     //add current month days
     for (let day = 1; day < dayCount + 1; day++) {
-        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day}>
+        elements = [...elements, <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day.toString()}>
             {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
                 .map((task, index) =>
                     <TaskNote key={keyCount * index * 100} customStyle={customStyle} task={task}>
