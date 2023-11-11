@@ -7,28 +7,26 @@ import {IconButton} from "./IconButton";
 import {BiEdit} from "react-icons/bi";
 import {Col, Row} from "react-bootstrap";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {TiDelete} from "react-icons/ti";
 
 
 export function TaskNote(props) {
     const {task, tasks, children, customStyle} = props
     const [open, setIsOpen] = useState(false);
-    return <a href={"#"} onClick={(event) => {
+    return <button className={"p-0 m-0 text-start text-white border-0 bg-transparent w-100"}  onClick={(event) => {
         event.preventDefault();
         setIsOpen(true);
     }}>
         {children}
         <TaskPopUp open={open} task={task} tasks={tasks} onOpenChanged={setIsOpen} customStyle={customStyle}/>
-    </a>
+    </button>
 }
 
 function TaskPopUp(props) {
     const {task, tasks, open, onOpenChanged, customStyle} = props;
-    const {colorPallet} = useColorSchemeContext();
-    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={colorPallet.taskNote.arrowStyle}
-                  overlayStyle={colorPallet.taskNote.overlayStyle}
-                  contentStyle={colorPallet.taskNote.contentStyle}
+    return <Popup onClose={() => onOpenChanged(false)} open={open} arrowStyle={customStyle.taskNote.arrowStyle}
+                  overlayStyle={customStyle.taskNote.overlayStyle}
+                  contentStyle={customStyle.taskNote.contentStyle}
                   children={task ? <TaskPopUpData task={task} customStyle={customStyle}/> : tasks.map(task =>
                       <TaskPopUpData key={task.id}
                                      task={task} customStyle={customStyle}/>)}/>

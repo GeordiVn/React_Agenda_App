@@ -29,7 +29,7 @@ const taskConverter = {
 export function TaskManagerProvider(props) {
     const collectionRef = useMemo(() => collection(firestoreDB, 'tasks').withConverter(taskConverter), []);
     const queryRef = useMemo(() => query(collectionRef), [collectionRef]);
-    const [tasks, loading,error] = useCollectionData(queryRef);
+    const [tasks, loading] = useCollectionData(queryRef);
     const [editTask, setEditTask] = useState(NEW_TASK);
     const [title, setTitle] = useState("");
     const [show, setShow] = useState(false);

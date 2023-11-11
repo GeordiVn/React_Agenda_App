@@ -1,4 +1,4 @@
-import {Col, Row} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import PropTypes from "prop-types";
 
