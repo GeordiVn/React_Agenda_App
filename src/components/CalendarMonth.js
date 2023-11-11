@@ -7,7 +7,7 @@ import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} fro
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
-import {dayNameNumbers, dayNames, MONTH_NUMBER} from "../data/data";
+import {DAYNAME_NUMBERS, DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data";
 import {dayMonthIsToday, taskIsCurrentDay, taskIsCurrentDayAndIsRepeat,} from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
@@ -20,7 +20,7 @@ export function CalendarMonth() {
     return <div>
         <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
         <Section customStyle={colorPallet}>
-            <DayOrderBar dayNames={dayNames}/>
+            <DayOrderBar dayNames={DAY_NAMES_SHORT}/>
             <MonthGrid dateSelected={dateSelected} tasks={tasks} customStyle={colorPallet}/>
         </Section>
     </div>
@@ -62,7 +62,7 @@ function MonthGrid(props) {
     const end = endOfMonth(dateSelected)
     const dayCount = getDaysInMonth(start);
     let elements = [];
-    let count = dayNameNumbers[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
+    let count = DAYNAME_NUMBERS[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
     let keyCount = 0;
 
     //add empty days
@@ -97,7 +97,7 @@ function MonthGrid(props) {
     }
     //add empty days
     if (lastDayOfMonth(dateSelected).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
-        for (let i = 0; i < 7 - dayNameNumbers[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
+        for (let i = 0; i < 7 - DAYNAME_NUMBERS[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
             elements = [...elements, <DayElement key={keyCount} style={customStyle.monthDayElementEmpty}></DayElement>]
             keyCount++;
         }

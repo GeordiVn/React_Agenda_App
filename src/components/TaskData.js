@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import {priorityColor} from "../data/data";
+import {PRIORITY_COLOR} from "../data/data";
 
 export function TaskData(props) {
     const {title, data, priority} = props;
     return <p><span style={{
         fontSize: 'large',
         fontWeight: 'bold',
-        color: priority ? priorityColor[priority] : "white"
+        color: priority ? PRIORITY_COLOR[priority] : "white"
     }}>{title}: </span>{data}</p>
 }
 

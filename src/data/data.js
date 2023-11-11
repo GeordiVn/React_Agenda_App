@@ -1,11 +1,11 @@
-export const dayNames = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
-export const dayNameNumbers = {
+export const DAY_NAMES_SHORT = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
+export const DAYNAME_NUMBERS = {
     maandag: 1, dinsdag: 2, woensdag: 3, donderdag: 4, vrijdag: 5, zaterdag: 6, zondag: 7
 };
 export const dayNumberNames = {
     1: "Maandag", 2: 'Dinsdag', 3: 'Woensdag', 4: 'Donderdag', 5: 'Vrijdag', 6: 'Zaterdag', 7: 'Zondag'
 };
-export const priorityColor = {
+export const PRIORITY_COLOR = {
     0: 'white', 1: 'orange', 2: 'red'
 }
 export const MONTH_NUMBER = {
