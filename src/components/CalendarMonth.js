@@ -78,7 +78,7 @@ function MonthGrid(props) {
 }
 
 function EmptyDaysOfPrevMonth(props) {
-    const {startDay,customStyle} = props;
+    const {startDay, customStyle} = props;
     return <>
         {addEmptyDaysOfPrevMonth(startDay).map((number, index) => <DayElement key={index}
                                                                               style={customStyle.monthDayElementEmpty}/>)}
@@ -86,7 +86,7 @@ function EmptyDaysOfPrevMonth(props) {
 }
 
 function CurrentMonthDays(props) {
-    const {startDay,tasks, dateSelected,customStyle} = props;
+    const {startDay, tasks, dateSelected, customStyle} = props;
     return <>
         {addCurrentMonthDays(startDay).map((type, index) => type !== "newrow" ?
             <DayElement key={index} today={dayMonthIsToday(dateSelected, Number(type))} title={type.toString()}>
@@ -103,12 +103,33 @@ function CurrentMonthDays(props) {
 }
 
 function EmptyDaysOfNextMonth(props) {
-    const {endDay, dateSelected,customStyle} = props
+    const {endDay, dateSelected, customStyle} = props
     return <>
         {addEmptyDaysOfNextMonth(endDay, dateSelected).map((number, index) => <DayElement key={index}
-                                                                                       style={customStyle.monthDayElementEmpty}></DayElement>)}
+                                                                                          style={customStyle.monthDayElementEmpty}></DayElement>)}
     </>
 }
+
+EmptyDaysOfPrevMonth.propTypes = {
+    startDay: PropTypes.instanceOf(Date),
+    customStyle: PropTypes.object
+};
+EmptyDaysOfPrevMonth.propTypes = {
+    endDay: PropTypes.instanceOf(Date),
+    dateSelected: PropTypes.instanceOf(Date),
+    customStyle: PropTypes.object
+};
+CurrentMonthDays.propTypes = {
+    startDay: PropTypes.instanceOf(Date), tasks: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
+        priority: PropTypes.number,
+        date: PropTypes.object
+    })),
+    dateSelected: PropTypes.instanceOf(Date),
+    customStyle: PropTypes.object
+};
 
 MonthSelector.propTypes = {
     dateSelected: PropTypes.instanceOf(Date), onDateChanged: PropTypes.func
