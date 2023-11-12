@@ -24,7 +24,7 @@ export function CalendarWeek() {
 }
 
 function WeekSelector(props) {
-    const {weekRange, onWeekRangeChanged , customStyle} = props;
+    const {weekRange, onWeekRangeChanged, customStyle} = props;
 
     return <SelectionBar customStyle={customStyle}>
         <ButtonCustom title={'Vorige week'} onClick={e => onWeekRangeChanged({
@@ -60,8 +60,6 @@ CalendarWeek.propTypes = {
 
 WeekSelector.propTypes = {
     weekRange: PropTypes.shape({
-        start: PropTypes.object,
-        end: PropTypes.object
-    }),
-    onWeekRangeChanged: PropTypes.func
+        start: PropTypes.object, end: PropTypes.object
+    }), onWeekRangeChanged: PropTypes.func
 }

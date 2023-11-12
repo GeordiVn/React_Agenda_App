@@ -76,47 +76,38 @@ function DaysForMonth(props) {
 }
 
 YearSelector.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    onDateSelectedChanged: PropTypes.func
+    dateSelected: PropTypes.instanceOf(Date), onDateSelectedChanged: PropTypes.func
 };
 
 MonthColumn.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    tasks: PropTypes.arrayOf(PropTypes.shape({
+    dateSelected: PropTypes.instanceOf(Date), tasks: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    })),
-    month: PropTypes.shape({
-        number: PropTypes.number,
-        month: PropTypes.string
-    }),
-    customStyle: PropTypes.shape({})
+    })), month: PropTypes.shape({
+        number: PropTypes.number, month: PropTypes.string
+    }), customStyle: PropTypes.shape({})
 };
 
 DayForMonth.protpTypes = {
-    title: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string, tasks: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    })),
-    customStyle: PropTypes.shape({})
+    })), customStyle: PropTypes.shape({})
 };
 
 DaysForMonth.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    tasks: PropTypes.arrayOf(PropTypes.shape({
+    dateSelected: PropTypes.instanceOf(Date), tasks: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    })),
-    customStyle: PropTypes.shape({})
+    })), customStyle: PropTypes.shape({})
 };
 

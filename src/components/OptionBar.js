@@ -8,6 +8,6 @@ export function OptionBar(props) {
     return <Row style={colorPallet.optionBar} className={'g-0'}>{children}</Row>
 }
 
-OptionBar.propTypes={
-    children:PropTypes.any
+OptionBar.propTypes = {
+    children: PropTypes.any
 };
