@@ -1,3 +1,23 @@
+import {CalendarWeek} from "../components/CalendarWeek";
+import {CalendarMonth} from "../components/CalendarMonth";
+import {CalendarYear} from "../components/CalendarYear";
+import React from "react";
+import {toDateInputValue} from "../utilities/db_time_date_utilities";
+
+export const LAYOUT_SELECT = {
+    0: <CalendarWeek/>,
+    1: <CalendarMonth/>,
+    2: <CalendarYear/>
+}
+export const NEW_TASK = {
+    title: "",
+    priority: 0,
+    date: {date: toDateInputValue(new Date()), time: "00:00"},
+    description: "",
+    repeat: false,
+    location: {_long: 0, _lat: 0}
+}
+
 export const DAY_NAMES_SHORT = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
 export const DAYNAME_NUMBERS = {
     maandag: 1, dinsdag: 2, woensdag: 3, donderdag: 4, vrijdag: 5, zaterdag: 6, zondag: 7

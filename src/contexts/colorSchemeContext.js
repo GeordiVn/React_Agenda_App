@@ -15,14 +15,14 @@ export function ColorSchemeProvider(props) {
 
     useEffect(() => {
         setBodyColor(colorPallet.body)
-    }, [colorPallet.body,setBodyColor]);
+    }, [colorPallet.body, setBodyColor]);
 
     const changeColorPallet = useCallback((colorScheme) => {
         setColorScheme(colorScheme);
-        setBodyColor( COLOR_SCHEME[colorScheme].body);
+        setBodyColor(COLOR_SCHEME[colorScheme].body);
         setColorPallet(COLOR_SCHEME[colorScheme])
 
-    }, [setBodyColor,setColorScheme]);
+    }, [setBodyColor, setColorScheme]);
 
 
     const api = useMemo(() => ({

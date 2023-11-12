@@ -5,6 +5,8 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 import {toast} from "react-toastify";
 import {Button, Col, Row} from "react-bootstrap";
 import {useColorSchemeContext} from "./colorSchemeContext";
+import {toDateInputValue} from "../utilities/db_time_date_utilities";
+import {NEW_TASK} from "../data/data";
 
 
 const TaskManagerContext = createContext();
@@ -46,7 +48,7 @@ export function TaskManagerProvider(props) {
     }, [])
     const setTask = useCallback((task) => {
         setEditTask({
-            ...task, date: {date: task.date.toDate().toDateInputValue(), time: task.date.toDate().toLocaleTimeString()}
+            ...task, date: {date: toDateInputValue(task.date.toDate()), time: task.date.toDate().toLocaleTimeString()}
         })
     }, [])
     const deleteTask = useCallback(async (task) => {
@@ -79,7 +81,6 @@ export function TaskManagerProvider(props) {
     const saveTask = useCallback(async (task) => {
         const taskForSave = {...task, date: new Date(task.date.date + "T" + task.date.time)}
         try {
-            console.log(taskForSave);
             task.ref ?
                 await updateDoc(task.ref, taskForSave).then(() => toast.info("Wijzigingen opgeslagen!")) :
                 await addDoc(collectionRef, taskForSave).then(() => toast.info("Nieuwe task toegevoegd!"));
@@ -109,17 +110,4 @@ export function TaskManagerProvider(props) {
     </TaskManagerContext.Provider>
 }
 
-Date.prototype.toDateInputValue = (function () {
-    const local = new Date(this);
-    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0, 10);
-});
-const NEW_TASK = {
-    title: "",
-    priority: 0,
-    date: {date: new Date().toDateInputValue(), time: "00:00"},
-    description: "",
-    repeat: false,
-    location: {_long: 0, _lat: 0}
-}
 export const useTaskManagerContext = () => useContext(TaskManagerContext);

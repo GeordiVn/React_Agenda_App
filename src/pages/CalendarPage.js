@@ -10,16 +10,13 @@ import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import {ToastContainer} from "react-toastify";
 import {useLocalStorage} from "@uidotdev/usehooks";
+import {LAYOUT_SELECT} from "../data/data";
 
 export function CalendarPage() {
-    const LAYOUT_SELECT={
-        0:<CalendarWeek/>,
-        1:<CalendarMonth/>,
-        2:<CalendarYear/>
-    }
+
     const {setShow, setTitle, newTask} = useTaskManagerContext()
     const {colorScheme, changeColorPallet} = useColorSchemeContext();
-    const [lastLayout,setLastLayout] = useLocalStorage("lastLayout",0)
+    const [lastLayout, setLastLayout] = useLocalStorage("lastLayout", 0)
     const [layout, setLayout] = useState(LAYOUT_SELECT[lastLayout]);
 
 
@@ -56,7 +53,7 @@ export function CalendarPage() {
                     }}/>
                 </Col>
                 <Col xs={"auto"}>
-                    <Form.Select  defaultValue={Number(colorScheme)}
+                    <Form.Select defaultValue={Number(colorScheme)}
                                  onChange={e => changeColorPallet(Number(e.target.value))}>
                         <option value={0}>Light mode</option>
                         <option value={1}>Dark mode</option>
@@ -67,6 +64,8 @@ export function CalendarPage() {
             <ToastContainer/>
         </OptionBar>
         <TaskManager/>
-        {layout}
+        <>
+            {layout}
+        </>
     </Container>
 }

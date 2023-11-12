@@ -9,7 +9,9 @@ import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
 import {DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data";
 import {
-    addCurrentMonthDays, addEmptyDaysOfNextMonth, addEmptyDaysOfPrevMonth,
+    addCurrentMonthDays,
+    addEmptyDaysOfNextMonth,
+    addEmptyDaysOfPrevMonth,
     dayMonthIsToday,
     taskIsCurrentDay,
     taskIsCurrentDayAndIsRepeat,
@@ -63,16 +65,15 @@ function DayName(props) {
     </Col>
 }
 
-
 function MonthGrid(props) {
     const {dateSelected, tasks, customStyle} = props;
-    const start = startOfMonth(dateSelected);
-    const end = endOfMonth(dateSelected);
+    const startDate = startOfMonth(dateSelected);
+    const endDate = endOfMonth(dateSelected);
 
     return <>
-        <EmptyDaysOfPrevMonth startDay={start} customStyle={customStyle}/>
-        <CurrentMonthDays startDay={start} tasks={tasks} dateSelected={dateSelected} customStyle={customStyle}/>
-        <EmptyDaysOfNextMonth endDay={end} customStyle={customStyle}/>
+        <EmptyDaysOfPrevMonth startDay={startDate} customStyle={customStyle}/>
+        <CurrentMonthDays startDay={startDate} tasks={tasks} dateSelected={dateSelected} customStyle={customStyle}/>
+        <EmptyDaysOfNextMonth endDay={endDate} customStyle={customStyle}/>
     </>
 
 }
@@ -111,13 +112,10 @@ function EmptyDaysOfNextMonth(props) {
 }
 
 EmptyDaysOfPrevMonth.propTypes = {
-    startDay: PropTypes.instanceOf(Date),
-    customStyle: PropTypes.object
+    startDay: PropTypes.instanceOf(Date), customStyle: PropTypes.object
 };
 EmptyDaysOfPrevMonth.propTypes = {
-    endDay: PropTypes.instanceOf(Date),
-    dateSelected: PropTypes.instanceOf(Date),
-    customStyle: PropTypes.object
+    endDay: PropTypes.instanceOf(Date), dateSelected: PropTypes.instanceOf(Date), customStyle: PropTypes.object
 };
 CurrentMonthDays.propTypes = {
     startDay: PropTypes.instanceOf(Date), tasks: PropTypes.arrayOf(PropTypes.shape({
@@ -126,9 +124,7 @@ CurrentMonthDays.propTypes = {
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    })),
-    dateSelected: PropTypes.instanceOf(Date),
-    customStyle: PropTypes.object
+    })), dateSelected: PropTypes.instanceOf(Date), customStyle: PropTypes.object
 };
 
 MonthSelector.propTypes = {

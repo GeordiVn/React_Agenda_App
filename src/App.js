@@ -18,7 +18,7 @@ function App() {
     return (
         <ColorSchemeProvider>
             <TaskManagerProvider>
-                    <ProvidedApp/>
+                <ProvidedApp/>
             </TaskManagerProvider>
         </ColorSchemeProvider>
     );
