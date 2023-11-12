@@ -1,14 +1,13 @@
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
 import PropTypes from "prop-types";
 
 export function SelectionBar(props) {
-    const {children} = props;
-    const {colorPallet} = useColorSchemeContext();
-    return <div style={colorPallet.selectionBar}>
+    const {children, customStyle} = props;
+    return <div style={customStyle.selectionBar}>
         {children}
     </div>
 }
 
 SelectionBar.propTypes = {
-    children: PropTypes.any
+    children: PropTypes.any,
+    customStyle: PropTypes.object
 };

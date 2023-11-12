@@ -16,7 +16,7 @@ export function CalendarWeek() {
     });
 
     return <div>
-        <WeekSelector weekRange={weekRange} onWeekRangeChanged={setWeekRange}/>
+        <WeekSelector weekRange={weekRange} onWeekRangeChanged={setWeekRange} customStyle={colorPallet}/>
         {[...tasks].sort((p1, p2) => p1.date.seconds - p2.date.seconds)
             .filter((p1) => p1.date.toDate() >= weekRange.start && p1.date.toDate() <= weekRange.end)
             .map((task) => <TaskElementWeek key={task.id} task={task} customStyle={colorPallet}/>)}
@@ -24,9 +24,9 @@ export function CalendarWeek() {
 }
 
 function WeekSelector(props) {
-    const {weekRange, onWeekRangeChanged} = props;
+    const {weekRange, onWeekRangeChanged , customStyle} = props;
 
-    return <SelectionBar>
+    return <SelectionBar customStyle={customStyle}>
         <ButtonCustom title={'Vorige week'} onClick={e => onWeekRangeChanged({
             start: startOfWeek(weekRange.start.setDate(weekRange.start.getDate() - 7), {weekStartsOn: 1},),
             end: endOfWeek(weekRange.end.setDate(weekRange.end.getDate() - 7), {weekStartsOn: 1})

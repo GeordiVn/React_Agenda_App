@@ -13,7 +13,7 @@ import {TiDelete} from "react-icons/ti";
 export function TaskNote(props) {
     const {task, tasks, children, customStyle} = props
     const [open, setIsOpen] = useState(false);
-    return <button className={"p-0 m-0 text-start text-white border-0 bg-transparent w-100"}  onClick={(event) => {
+    return <button className={"p-0 m-0 text-start text-white border-0 bg-transparent w-100"} onClick={(event) => {
         event.preventDefault();
         setIsOpen(true);
     }}>
@@ -69,13 +69,11 @@ TaskPopUpData.propTypes = {
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    }),
-    customStyle: PropTypes.shape({})
+    }), customStyle: PropTypes.shape({})
 };
 
 TaskNote.propTypes = {
-    tasks: PropTypes.array,
-    task: PropTypes.shape({
+    tasks: PropTypes.array, task: PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),

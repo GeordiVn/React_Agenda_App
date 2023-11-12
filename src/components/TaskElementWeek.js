@@ -47,7 +47,6 @@ TaskElementWeek.propTypes = {
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    }),
-    customStyle:PropTypes.shape({})
+    }), customStyle: PropTypes.shape({})
 };
 

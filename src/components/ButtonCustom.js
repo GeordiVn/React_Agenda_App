@@ -9,6 +9,5 @@ export function ButtonCustom(props) {
 }
 
 ButtonCustom.propTypes = {
-    title: PropTypes.string,
-    onClick: PropTypes.func
+    title: PropTypes.string, onClick: PropTypes.func
 };

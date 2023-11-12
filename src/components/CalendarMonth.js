@@ -3,14 +3,20 @@ import {DayElement} from "./DayElement";
 import {useState} from "react";
 import {Section} from "./Section";
 import {Col, Row} from "react-bootstrap";
-import {addMonths, endOfMonth, getDaysInMonth, lastDayOfMonth, startOfMonth} from "date-fns";
+import {addMonths, endOfMonth, startOfMonth} from "date-fns";
 import {ButtonCustom} from "./ButtonCustom";
 import {TaskNote} from "./TaskNote";
 import PropTypes from "prop-types";
-import {DAYNAME_NUMBERS, DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data";
-import {dayMonthIsToday, taskIsCurrentDay, taskIsCurrentDayAndIsRepeat,} from "../utilities/calendar_utilities";
+import {DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data";
+import {
+    addCurrentMonthDays, addEmptyDaysOfNextMonth, addEmptyDaysOfPrevMonth,
+    dayMonthIsToday,
+    taskIsCurrentDay,
+    taskIsCurrentDayAndIsRepeat,
+} from "../utilities/calendar_utilities";
 import {useTaskManagerContext} from "../contexts/taskManagerContext";
 import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+
 
 export function CalendarMonth() {
     const [dateSelected, setDateSelected] = useState(new Date());
@@ -18,7 +24,7 @@ export function CalendarMonth() {
     const {colorPallet} = useColorSchemeContext()
 
     return <div>
-        <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected}/>
+        <MonthSelector dateSelected={dateSelected} onDateChanged={setDateSelected} customStyle={colorPallet}/>
         <Section customStyle={colorPallet}>
             <DayOrderBar dayNames={DAY_NAMES_SHORT}/>
             <MonthGrid dateSelected={dateSelected} tasks={tasks} customStyle={colorPallet}/>
@@ -27,8 +33,8 @@ export function CalendarMonth() {
 }
 
 function MonthSelector(props) {
-    const {dateSelected, onDateChanged} = props
-    return <SelectionBar>
+    const {dateSelected, onDateChanged, customStyle} = props
+    return <SelectionBar customStyle={customStyle}>
         <ButtonCustom title={'Vorige maand'} onClick={() => onDateChanged(addMonths(dateSelected, -1))}/>
         <ButtonCustom title={'Volgende maand'} onClick={() => onDateChanged(addMonths(dateSelected, 1))}/>
         <ButtonCustom title={'Deze maand'} onClick={() => onDateChanged(new Date())}/>
@@ -43,7 +49,9 @@ function DayOrderBar(props) {
     const {dayNames} = props;
     return <Col xs={12}>
         <Row>
-            {dayNames.map((dayName, index) => <DayName key={index} dayName={dayName}/>)}
+            <>
+                {dayNames.map((dayName, index) => <DayName key={index} dayName={dayName}/>)}
+            </>
         </Row>
     </Col>
 }
@@ -59,55 +67,51 @@ function DayName(props) {
 function MonthGrid(props) {
     const {dateSelected, tasks, customStyle} = props;
     const start = startOfMonth(dateSelected);
-    const end = endOfMonth(dateSelected)
-    const dayCount = getDaysInMonth(start);
-    let elements = [];
-    let count = DAYNAME_NUMBERS[start.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]
-    let keyCount = 0;
+    const end = endOfMonth(dateSelected);
 
-    //add empty days
-    if (count !== 1) {
-        for (let i = 0; i < count - 1; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={customStyle.monthDayElementEmpty}></DayElement>]
-            keyCount++;
-        }
-    }
-    //add current month days
-    for (let day = 1; day < dayCount + 1; day++) {
-        elements = [...elements,
-            <DayElement key={keyCount} today={dayMonthIsToday(dateSelected, day)} title={day.toString()}>
-                {[...tasks].filter(task => taskIsCurrentDay(task, day, dateSelected) || taskIsCurrentDayAndIsRepeat(task, day, dateSelected))
-                    .map((task, index) =>
-                        <TaskNote key={keyCount * index * 100} customStyle={customStyle} task={task}>
-                            <div className={"rounded-2"} style={customStyle.monthTaskInfo}>
-                                <p>
-                                    {task.title}
-                                </p>
-                            </div>
-                        </TaskNote>)}
-            </DayElement>];
-        keyCount++;
-        if (count === 7) {
-            elements = [...elements, <Col key={keyCount} xs={12}></Col>]
-            count = 0
-            keyCount++;
-        }
-        count++;
+    return <>
+        <EmptyDaysOfPrevMonth startDay={start} customStyle={customStyle}/>
+        <CurrentMonthDays startDay={start} tasks={tasks} dateSelected={dateSelected} customStyle={customStyle}/>
+        <EmptyDaysOfNextMonth endDay={end} customStyle={customStyle}/>
+    </>
 
-    }
-    //add empty days
-    if (lastDayOfMonth(dateSelected).toLocaleDateString('nl-BE', {weekday: 'long'}).toLowerCase() !== 'zondag') {
-        for (let i = 0; i < 7 - DAYNAME_NUMBERS[end.toLocaleDateString('ng-BE', {weekday: 'long'}).toLowerCase()]; i++) {
-            elements = [...elements, <DayElement key={keyCount} style={customStyle.monthDayElementEmpty}></DayElement>]
-            keyCount++;
-        }
-    }
-    return elements;
+}
+
+function EmptyDaysOfPrevMonth(props) {
+    const {startDay,customStyle} = props;
+    return <>
+        {addEmptyDaysOfPrevMonth(startDay).map((number, index) => <DayElement key={index}
+                                                                              style={customStyle.monthDayElementEmpty}/>)}
+    </>
+}
+
+function CurrentMonthDays(props) {
+    const {startDay,tasks, dateSelected,customStyle} = props;
+    return <>
+        {addCurrentMonthDays(startDay).map((type, index) => type !== "newrow" ?
+            <DayElement key={index} today={dayMonthIsToday(dateSelected, Number(type))} title={type.toString()}>
+                {[...tasks].filter(task => taskIsCurrentDay(task, Number(type), dateSelected) || taskIsCurrentDayAndIsRepeat(task, Number(type), dateSelected))
+                    .map((task, index) => <TaskNote key={index * 100} customStyle={customStyle} task={task}>
+                        <div className={"rounded-2"} style={customStyle.monthTaskInfo}>
+                            <p>
+                                {task.title}
+                            </p>
+                        </div>
+                    </TaskNote>)}
+            </DayElement> : <Col key={index} xs={12}></Col>)}
+    </>
+}
+
+function EmptyDaysOfNextMonth(props) {
+    const {endDay, dateSelected,customStyle} = props
+    return <>
+        {addEmptyDaysOfNextMonth(endDay, dateSelected).map((number, index) => <DayElement key={index}
+                                                                                       style={customStyle.monthDayElementEmpty}></DayElement>)}
+    </>
 }
 
 MonthSelector.propTypes = {
-    dateSelected: PropTypes.instanceOf(Date),
-    onDateChanged: PropTypes.func
+    dateSelected: PropTypes.instanceOf(Date), onDateChanged: PropTypes.func
 };
 
 DayName.propTypes = {
@@ -125,8 +129,6 @@ MonthGrid.propTypes = {
         location: PropTypes.shape({_lat: PropTypes.number, _long: PropTypes.number}),
         priority: PropTypes.number,
         date: PropTypes.object
-    })),
-    dateSelected: PropTypes.instanceOf(Date),
-    customStyle: PropTypes.shape({})
+    })), dateSelected: PropTypes.instanceOf(Date), customStyle: PropTypes.shape({})
 }
 

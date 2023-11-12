@@ -15,8 +15,8 @@ export function CalendarYear() {
     const [dateSelected, setDateSelected] = useState(new Date(new Date().getFullYear(), 0, 1));
     const {tasks} = useTaskManagerContext();
     const {colorPallet} = useColorSchemeContext();
-    return <div>
-        <YearSelector dateSelected={dateSelected} onDateSelectedChanged={setDateSelected}/>
+    return <>
+        <YearSelector dateSelected={dateSelected} onDateSelectedChanged={setDateSelected} customStyle={colorPallet}/>
         <Section customStyle={colorPallet}>
             {MONTHS_IN_YEAR.map((month, index) => <MonthColumn key={month.number}
                                                                tasks={tasks}
@@ -24,12 +24,12 @@ export function CalendarYear() {
                                                                customStyle={colorPallet}
                                                                dateSelected={new Date(dateSelected.setMonth(month.number))}/>)}
         </Section>
-    </div>
+    </>
 }
 
 function YearSelector(props) {
-    const {dateSelected, onDateSelectedChanged} = props;
-    return <SelectionBar>
+    const {dateSelected, onDateSelectedChanged, customStyle} = props;
+    return <SelectionBar customStyle={customStyle}>
         <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, -1))} title={"Vorig jaar"}/>
         <ButtonCustom onClick={() => onDateSelectedChanged(addYears(dateSelected, 1))} title={"Volgend jaar"}/>
         <ButtonCustom onClick={() => onDateSelectedChanged(new Date())} title={"Dit jaar"}/>
@@ -59,8 +59,6 @@ function DayForMonth(props) {
             </div>
         </TaskNote>}
     </div>
-
-
 }
 
 function DaysForMonth(props) {
