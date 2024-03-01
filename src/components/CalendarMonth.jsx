@@ -1,13 +1,13 @@
-import {SelectionBar} from "./SelectionBar";
-import {DayElement} from "./DayElement";
+import {SelectionBar} from "./SelectionBar.jsx";
+import {DayElement} from "./DayElement.jsx";
 import {useState} from "react";
-import {Section} from "./Section";
+import {Section} from "./Section.jsx";
 import {Col, Row} from "react-bootstrap";
 import {addMonths, endOfMonth, startOfMonth} from "date-fns";
-import {ButtonCustom} from "./ButtonCustom";
-import {TaskNote} from "./TaskNote";
+import {ButtonCustom} from "./ButtonCustom.jsx";
+import {TaskNote} from "./TaskNote.jsx";
 import PropTypes from "prop-types";
-import {DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data";
+import {DAY_NAMES_SHORT, MONTH_NUMBER} from "../data/data.jsx";
 import {
     addCurrentMonthDays,
     addEmptyDaysOfNextMonth,
@@ -16,8 +16,8 @@ import {
     taskIsCurrentDay,
     taskIsCurrentDayAndIsRepeat,
 } from "../utilities/calendar_utilities";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext.jsx";
 
 
 export function CalendarMonth() {

@@ -1,6 +1,6 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {useLocalStorage} from "@uidotdev/usehooks";
-import {COLOR_SCHEME} from "../data/data";
+import {COLOR_SCHEME} from "../data/data.jsx";
 
 const ColorSchemeContext = createContext();
 

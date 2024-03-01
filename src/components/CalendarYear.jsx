@@ -1,14 +1,14 @@
-import {Section} from "./Section";
-import {SelectionBar} from "./SelectionBar";
+import {Section} from "./Section.jsx";
+import {SelectionBar} from "./SelectionBar.jsx";
 import {useState} from "react";
 import {Col} from "react-bootstrap";
 import {addYears, getDaysInMonth} from "date-fns";
-import {ButtonCustom} from "./ButtonCustom";
-import {TaskNote} from "./TaskNote";
+import {ButtonCustom} from "./ButtonCustom.jsx";
+import {TaskNote} from "./TaskNote.jsx";
 import {taskIsCurrentDay, taskIsCurrentDayAndIsRepeat} from "../utilities/calendar_utilities";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
-import {MONTHS_IN_YEAR} from "../data/data";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext.jsx";
+import {MONTHS_IN_YEAR} from "../data/data.jsx";
 import PropTypes from "prop-types";
 
 export function CalendarYear() {

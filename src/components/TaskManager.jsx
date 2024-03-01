@@ -1,11 +1,12 @@
 import {Button, Form, Modal, ModalBody, ModalHeader} from "react-bootstrap";
-import {ButtonCustom} from "./ButtonCustom";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {ButtonCustom} from "./ButtonCustom.jsx";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
+import {getTwentyFourHourTime} from "../utilities/db_time_date_utilities.js";
 
 
 export function TaskManager() {
     const {title, editTask, storeTaskChanges, saveTask, show, setShow} = useTaskManagerContext();
-
+console.log(getTwentyFourHourTime(editTask.date.time.toString()))
     return (<Modal show={!!show} onHide={() => setShow(false)}>
         <ModalHeader>
             <h5>{title}</h5>
@@ -30,7 +31,7 @@ export function TaskManager() {
                                   ...editTask, date: {date: e.target.value, time: editTask.date.time}
                               })}></Form.Control>
                 <Form.Label>Tijd</Form.Label>
-                <Form.Control required={true} type={"time"} value={editTask.date.time}
+                <Form.Control required={true} type={"time"} value={getTwentyFourHourTime(editTask.date.time.toString())}
                               onChange={(e) => storeTaskChanges({
                                   ...editTask, date: {date: editTask.date.date, time: e.target.value}
                               })}></Form.Control>

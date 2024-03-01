@@ -1,5 +1,5 @@
 import {Col} from "react-bootstrap";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext.jsx";
 import PropTypes from "prop-types";
 
 export function DayElement(props) {

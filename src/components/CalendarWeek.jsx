@@ -1,11 +1,11 @@
-import {TaskElementWeek} from "./TaskElementWeek";
+import {TaskElementWeek} from "./TaskElementWeek.jsx";
 import {endOfWeek, startOfWeek} from "date-fns";
 import {useState} from "react";
-import {ButtonCustom} from "./ButtonCustom";
-import {SelectionBar} from "./SelectionBar";
+import {ButtonCustom} from "./ButtonCustom.jsx";
+import {SelectionBar} from "./SelectionBar.jsx";
 import PropTypes from "prop-types";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext.jsx";
 
 
 export function CalendarWeek() {

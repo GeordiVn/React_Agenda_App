@@ -3,12 +3,12 @@ import {
     dBTimeStampToLocaleDateString, dbTimeStampToTime
 } from "../utilities/db_time_date_utilities";
 import PropTypes from "prop-types";
-import {Section} from "./Section";
-import {TaskData} from "./TaskData";
-import {IconButton} from "./IconButton";
+import {Section} from "./Section.jsx";
+import {TaskData} from "./TaskData.jsx";
+import {IconButton} from "./IconButton.jsx";
 import {BiEdit} from "react-icons/bi";
 import {TiDelete} from "react-icons/ti";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
 
 export function TaskElementWeek(props) {
     const {task, customStyle} = props

@@ -4,9 +4,9 @@ import {firestoreDB} from "../services/firebase";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {toast} from "react-toastify";
 import {Button, Col, Row} from "react-bootstrap";
-import {useColorSchemeContext} from "./colorSchemeContext";
+import {useColorSchemeContext} from "./colorSchemeContext.jsx";
 import {toDateInputValue} from "../utilities/db_time_date_utilities";
-import {NEW_TASK} from "../data/data";
+import {NEW_TASK} from "../data/data.jsx";
 
 
 const TaskManagerContext = createContext();

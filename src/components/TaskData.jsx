@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import {PRIORITY_COLOR} from "../data/data";
+import {PRIORITY_COLOR} from "../data/data.jsx";
 
 export function TaskData(props) {
     const {title, data, priority} = props;

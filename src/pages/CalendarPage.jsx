@@ -1,16 +1,16 @@
 import {Col, Container, Row, Form} from "react-bootstrap";
-import {OptionBar} from "../components/OptionBar";
-import {ButtonCustom} from "../components/ButtonCustom.js";
+import {OptionBar} from "../components/OptionBar.jsx";
+import {ButtonCustom} from "../components/ButtonCustom.jsx";
 import React, {useState} from "react";
-import {CalendarWeek} from "../components/CalendarWeek";
-import {CalendarMonth} from "../components/CalendarMonth";
-import {CalendarYear} from "../components/CalendarYear";
-import {TaskManager} from "../components/TaskManager";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
-import {useColorSchemeContext} from "../contexts/colorSchemeContext";
+import {CalendarWeek} from "../components/CalendarWeek.jsx";
+import {CalendarMonth} from "../components/CalendarMonth.jsx";
+import {CalendarYear} from "../components/CalendarYear.jsx";
+import {TaskManager} from "../components/TaskManager.jsx";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
+import {useColorSchemeContext} from "../contexts/colorSchemeContext.jsx";
 import {ToastContainer} from "react-toastify";
 import {useLocalStorage} from "@uidotdev/usehooks";
-import {LAYOUT_SELECT} from "../data/data";
+import {LAYOUT_SELECT} from "../data/data.jsx";
 
 export function CalendarPage() {
 
@@ -20,7 +20,7 @@ export function CalendarPage() {
     const [layout, setLayout] = useState(LAYOUT_SELECT[lastLayout]);
 
 
-    return <Container fluid={"md"} className={"p-2  g-0"}>
+    return <Container fluid={"md"} className={"g-0"}>
         <OptionBar>
             <Row className={'g-0'}>
                 <Col xs={"auto"}>

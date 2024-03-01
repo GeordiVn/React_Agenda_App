@@ -1,12 +1,12 @@
 import {useState} from "react";
-import {TaskData} from "./TaskData";
+import {TaskData} from "./TaskData.jsx";
 import PropTypes from "prop-types";
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
-import {IconButton} from "./IconButton";
+import {IconButton} from "./IconButton.jsx";
 import {BiEdit} from "react-icons/bi";
 import {Col, Row} from "react-bootstrap";
-import {useTaskManagerContext} from "../contexts/taskManagerContext";
+import {useTaskManagerContext} from "../contexts/taskManagerContext.jsx";
 import {TiDelete} from "react-icons/ti";
 
 
