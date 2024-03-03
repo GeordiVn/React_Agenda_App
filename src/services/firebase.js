@@ -1,7 +1,7 @@
 import {initializeApp} from "firebase/app";
 import {getFirestore} from 'firebase/firestore';
 const firebaseConfig = {
-    projectId: process.env.VITE_REACT_APP_FIREBASE_PROJECT_ID,
+    projectId: process.env.VITE_REACT_APP_FIREBASE_PROJECT_ID
 };
 
 console.log(process.env.VITE_REACT_APP_FIREBASE_PROJECT_ID);
