@@ -1,10 +1,11 @@
 {
-  "name": "taskfilemanager",
+  "name": "agendaapp",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "production": "vite",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
