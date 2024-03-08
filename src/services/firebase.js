@@ -3,8 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 
 
 const firebaseConfig = {
-    projectId: import.meta.env.VITE_REACT_APP_FIREBASE_PROJECT_ID
-        || process.env.REACT_APP_FIREBASE_PROJECT_ID
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
 
 };
 
