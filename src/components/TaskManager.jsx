@@ -6,7 +6,6 @@ import {getTwentyFourHourTime} from "../utilities/db_time_date_utilities.js";
 
 export function TaskManager() {
     const {title, editTask, storeTaskChanges, saveTask, show, setShow} = useTaskManagerContext();
-console.log(getTwentyFourHourTime(editTask.date.time.toString()))
     return (<Modal show={!!show} onHide={() => setShow(false)}>
         <ModalHeader>
             <h5>{title}</h5>

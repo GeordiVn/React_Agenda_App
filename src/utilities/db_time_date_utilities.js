@@ -15,6 +15,5 @@ export function toDateInputValue(date) {
 
 export function getTwentyFourHourTime(amPmString) {
     const d = new Date("1/1/2013 " + amPmString);
-    console.log(d)
     return (d.getHours() < 9 ? "0" + d.getHours() : d.getHours()) + ':' + (d.getMinutes() < 9 ? "0" + d.getMinutes() : d.getMinutes());
 }
